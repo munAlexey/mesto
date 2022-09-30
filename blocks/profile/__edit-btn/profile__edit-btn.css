@@ -1,0 +1,16 @@
+.profile__edit-btn {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ffffff;
+  position: relative;
+  margin-left: 4px;
+}
+
+@media screen and (min-width: 1280px) {
+  .profile__edit-btn {
+    width: 24px;
+    height: 24px;
+  }
+}

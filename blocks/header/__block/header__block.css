@@ -5,8 +5,18 @@
   height: 56px;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 768px) {
   .header__block {
+    padding: 35px 0 0 0;
+    height: 62px;
+    width: 700px;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header__block {
+    padding: 45px 0 0 0;
     height: 74px;
     width: 880px;
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
