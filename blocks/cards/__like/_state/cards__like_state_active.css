@@ -1,0 +1,4 @@
+.cards__like_state_active:active {
+  background-image: url('../../../../img/active-heart.svg');
+  background-repeat: no-repeat;
+}
