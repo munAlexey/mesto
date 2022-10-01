@@ -25,3 +25,20 @@
 @import url('../blocks/profile/__icon/profile__icon.css');
 @import url('../blocks/profile/__left-side/profile__left-side.css');
 @import url('../blocks/profile/__text-block/profile__text-block.css');
+
+/* section cards */
+
+@import url('../blocks/cards/cards.css');
+@import url('../blocks/cards/__img/cards__img.css');
+@import url('../blocks/cards/__item/cards__item.css');
+@import url('../blocks/cards/__like/cards__like.css');
+@import url('../blocks/cards/__list/cards__list.css');
+@import url('../blocks/cards/__title/cards__title.css');
+@import url('../blocks/cards/__text-block/card__text-block.css');
+
+/* footer */
+
+@import url('../blocks/footer/__copy/footer__copy.css');
+@import url('../blocks/footer/__block/footer__block.css');
+@import url('../blocks/footer/footer.css');
+
