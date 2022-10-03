@@ -34,9 +34,9 @@
 @import url('../blocks/cards/cards.css');
 @import url('../blocks/cards/__img/cards__img.css');
 @import url('../blocks/cards/__item/cards__item.css');
-@import url('../blocks/cards/__like/cards__like.css');
-@import url('../blocks/cards/__like/_state/cards__like_state_active.css');
-@import url('../blocks/cards/__like/_state/cards__like_state_hov.css');
+@import url('../blocks/cards/__like-btn/cards__like-btn.css');
+@import url('../blocks/cards/__like-btn/_state/cards__like-btn_state_active.css');
+@import url('../blocks/cards/__like-btn/_state/cards__like-btn_state_hov.css');
 @import url('../blocks/cards/__list/cards__list.css');
 @import url('../blocks/cards/__title/cards__title.css');
 @import url('../blocks/cards/__text-block/card__text-block.css');

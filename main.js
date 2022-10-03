@@ -20,7 +20,7 @@ let titleProfile = document.querySelector('.profile__title');
 let subtitleProfile = document.querySelector('.profile__subtitle');
 let formBtn = form.querySelector('.pop-up__button');
 
-formBtn.addEventListener('click', (event) => {
+formBtn.addEventListener('click', function formSubmitHandler(event) {
   event.preventDefault();
   if (inputName.value === '') {
     titleProfile.textContent = 'Жак-Ив Кусто';
@@ -39,4 +39,13 @@ formBtn.addEventListener('click', (event) => {
   }
 });
 
+let heart = document.querySelectorAll('.cards__like-btn');
+console.log(heart);
 
+for (let i = 0; i < heart.length; i++) {
+  heart[i].addEventListener('click', function() {
+    heart[i].classList.add('cards__like-btn_state_active');
+  });
+};
+
+form.addEventListener('submit', formSubmitHandler); 

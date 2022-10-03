@@ -22,7 +22,7 @@
             <img class="profile__photo" src="./img/image.jpg" alt="Жак-Ив Кусто">
             <div class="profile__text-block">
             <div class="profile__text-container">
-              <h2 class="profile__title">Жак-Ив Кусто</h2> 
+              <h2 class="profile__title">Жак-Ив Кусто</h2>
               <button class="profile__edit-btn profile__edit-btn_hov">
                 <img class="profile__icon" src="./img/edit-btn.svg" alt="ручка">
               </button>
@@ -39,10 +39,34 @@
       <section class="cards">
         <ul class="cards__list">
           <li class="cards__item">
-            <img class="cards__img" src="./img/img-1.jpg" alt="горы">
+            <picture>
+              <source 
+              srcset="./img/1280/img-1.jpg"
+              media="(min-width: 1280px)">
+              <source 
+              srcset="./img/768/img-1.jpg"
+              media="(min-width: 768px)">
+              <img class="cards__img" src="./img/320/img-1.jpg" alt="Алекс">
+            </picture>
             <div class="cards__text-block">
-              <h2 class="cards__title">Домбай</h2>
-              <button type="button" class="cards__like cards__like_state_hov cards__like_state_active">
+              <h2 class="cards__title">Алекс</h2>
+              <button type="button" class="cards__like-btn cards__like-btn_state_hov">
+              </button>
+            </div>
+          </li>
+          <li class="cards__item">
+            <picture>
+              <source 
+              srcset="./img/1280/img-2.jpg"
+              media="(min-width: 1280px)">
+              <source 
+              srcset="./img/768/img-2.jpg"
+              media="(min-width: 768px)">
+              <img class="cards__img" src="./img/320/img-2.jpg" alt="Декор">
+            </picture>
+            <div class="cards__text-block">
+              <h2 class="cards__title">Декор</h2>
+              <button class="cards__like-btn cards__like-btn_state_hov">
                 <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z" fill="black"/>
                 </svg>
@@ -50,21 +74,18 @@
             </div>
           </li>
           <li class="cards__item">
-            <img class="cards__img" src="./img/img-2.jpg" alt="пустыня">
+            <picture>
+              <source 
+              srcset="./img/1280/img-3.jpg"
+              media="(min-width: 1280px)">
+              <source 
+              srcset="./img/768/img-3.jpg"
+              media="(min-width: 768px)">
+              <img class="cards__img" src="./img/320/img-3.jpg" alt="Мозг">
+            </picture>
             <div class="cards__text-block">
-              <h2 class="cards__title">Гора Эльбрус</h2>
-              <button class="cards__like cards__like_state_hov cards__like_state_active">
-                <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z" fill="black"/>
-                </svg>
-              </button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img class="cards__img" src="./img/img-3.jpg" alt="замок">
-            <div class="cards__text-block">
-              <h2 class="cards__title">Карачаевск</h2>
-              <button class="cards__like cards__like_state_hov cards__like_state_active">
+              <h2 class="cards__title">Мозг</h2>
+              <button class="cards__like-btn cards__like-btn_state_hov">
                 <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z" fill="black"/>
                 </svg>
@@ -72,10 +93,18 @@
             </div>
           </li>
           <li class="cards__item">
-            <img class="cards__img" src="./img/img-1.jpg" alt="горы">
+            <picture>
+              <source 
+              srcset="./img/1280/img-4.jpg"
+              media="(min-width: 768px)">
+              <source 
+              srcset="./img/768/img-4.jpg"
+              media="(min-width: 768px)">
+              <img class="cards__img" src="./img/320/img-4.jpg" alt="Хеллуин">
+            </picture>
             <div class="cards__text-block">
-              <h2 class="cards__title">Домбай</h2>
-              <button class="cards__like cards__like_state_hov cards__like_state_active">
+              <h2 class="cards__title">Хеллуин</h2>
+              <button class="cards__like-btn cards__like-btn_state_hov">
                 <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z" fill="black"/>
                 </svg>
@@ -83,10 +112,18 @@
             </div>
           </li>
           <li class="cards__item">
-            <img class="cards__img" src="./img/img-2.jpg" alt="пустыня">
+            <picture>
+              <source 
+              srcset="./img/1280/img-5.jpg"
+              media="(min-width: 1280px)">
+              <source 
+              srcset="./img/768/img-5.jpg"
+              media="(min-width: 768px)">
+              <img class="cards__img" src="./img/320/img-5.jpg" alt="Рабочий стол">
+            </picture>
             <div class="cards__text-block">
-              <h2 class="cards__title">Гора Эльбрус</h2>
-              <button class="cards__like cards__like_state_hov cards__like_state_active">
+              <h2 class="cards__title">Рабочий стол</h2>
+              <button class="cards__like-btn cards__like-btn_state_hov">
                 <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z" fill="black"/>
                 </svg>
@@ -94,10 +131,18 @@
             </div>
           </li>
           <li class="cards__item">
-            <img class="cards__img" src="./img/img-3.jpg" alt="замок">
+            <picture>
+              <source 
+              srcset="./img/1280/img-6.jpg"
+              media="(min-width: 1280px)">
+              <source 
+              srcset="./img/768/img-6.jpg"
+              media="(min-width: 768px)">
+              <img class="cards__img" src="./img/320/img-6.jpg" alt="Предприятие">
+            </picture>
             <div class="cards__text-block">
-              <h2 class="cards__title">Карачаевск</h2>
-              <button class="cards__like cards__like_state_hov cards__like_state_active">
+              <h2 class="cards__title">Предприятие</h2>
+              <button class="cards__like-btn cards__like-btn_state_hov">
                 <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z" fill="black"/>
                 </svg>
