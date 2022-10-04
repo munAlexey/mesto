@@ -1,13 +1,7 @@
 .profile__icon {
-  left: 27%;
-  top: 27%;
-  position: absolute;
   width: 7.5px;
   height: 7.5px;
 }
-
-
-
 
 @media screen and (min-width: 1280px) {
   .profile__icon {

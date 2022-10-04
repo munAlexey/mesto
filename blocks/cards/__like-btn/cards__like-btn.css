@@ -7,3 +7,11 @@
   background-image: url('../../../img/like.svg');
   background-color: transparent;
 }
+
+.cards__like-btn:hover {
+  opacity: .5;
+}
+
+.cards__like-btn:active {
+  background-image: url('../../../img/active-heart.svg');
+}

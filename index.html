@@ -23,14 +23,14 @@
             <div class="profile__text-block">
             <div class="profile__text-container">
               <h2 class="profile__title">Жак-Ив Кусто</h2>
-              <button class="profile__edit-btn profile__edit-btn_hov">
+              <button type="button" class="profile__edit-btn">
                 <img class="profile__icon" src="./img/edit-btn.svg" alt="ручка">
               </button>
             </div>
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
           </div>
-            <button class="button profile__button_hov">
+            <button type="button" class="button profile__button">
               <img class="button__image" src="./img/add.svg" alt="добавить">
             </button>
         </div>
@@ -50,7 +50,7 @@
             </picture>
             <div class="cards__text-block">
               <h2 class="cards__title">Алекс</h2>
-              <button type="button" class="cards__like-btn cards__like-btn_state_hov">
+              <button type="button" class="cards__like-btn">
               </button>
             </div>
           </li>
@@ -66,7 +66,7 @@
             </picture>
             <div class="cards__text-block">
               <h2 class="cards__title">Декор</h2>
-              <button class="cards__like-btn cards__like-btn_state_hov">
+              <button type="button" class="cards__like-btn">
               </button>
             </div>
           </li>
@@ -82,7 +82,7 @@
             </picture>
             <div class="cards__text-block">
               <h2 class="cards__title">Мозг</h2>
-              <button class="cards__like-btn cards__like-btn_state_hov">
+              <button type="button" class="cards__like-btn">
               </button>
             </div>
           </li>
@@ -98,7 +98,7 @@
             </picture>
             <div class="cards__text-block">
               <h2 class="cards__title">Хеллуин</h2>
-              <button class="cards__like-btn cards__like-btn_state_hov">
+              <button type="button" class="cards__like-btn">
               </button>
             </div>
           </li>
@@ -114,7 +114,7 @@
             </picture>
             <div class="cards__text-block">
               <h2 class="cards__title">Рабочий стол</h2>
-              <button class="cards__like-btn cards__like-btn_state_hov">
+              <button type="button" class="cards__like-btn">
               </button>
             </div>
           </li>
@@ -129,8 +129,8 @@
               <img class="cards__img" src="./img/320/img-6.jpg" alt="Предприятие">
             </picture>
             <div class="cards__text-block">
-              <h2 class="cards__title">Предприятие</h2>
-              <button class="cards__like-btn cards__like-btn_state_hov">
+              <h3 class="cards__title">Предприятие</h3>
+              <button type="button" class="cards__like-btn">
               </button>
             </div>
           </li>
@@ -139,27 +139,30 @@
     </main>
 
     <footer class="footer">
-      <div class="footer__block">
-        <p class="footer__copy">&copy; 2020 Mesto Russia</p>
-      </div>
+      <p class="footer__copy">&copy; 2020 Mesto Russia</p>
     </footer>
 
     <div class="pop-up pop-up_close">
       <div class="pop-up__block">
-        <button class="pop-up__close-btn pop-up__close-btn_hov">
-          <img src="./img/close-btn.svg" alt="закрыть">
+        <button type="button" class="pop-up__close-btn">
+          <picture>
+            <source 
+              srcset="./img/768/close-btn.svg"
+              media="(min-width: 768px)">
+            <img src="./img/close-btn.svg" alt="закрыть">
+          </picture>
         </button>
         <h2 class="pop-up__title">
           Редактировать профиль
         </h2>
-        <form class="pop-up__form">
-          <input type="text" class="pop-up__name pop-up__input" placeholder="Введите ваше имя" id="pop-up__name">
-          <input type="text" class="pop-up__text pop-up__input" placeholder="Введите вашу профессию" id="pop-up__text">
-          <button type="submit" class="pop-up__button pop-up__button_hov">Сохранить</button>
+        <form class="pop-up__form" name="pop-up-form">
+          <input type="text" class="pop-up__input" placeholder="Введите ваше имя" id="pop-up__name">
+          <input type="text" class="pop-up__input" placeholder="Введите вашу профессию" id="pop-up__text">
+          <button type="submit" class="pop-up__button">Сохранить</button>
         </form>
       </div>
     </div>
   </div>
-  <script src="./main.js"></script>
+  <script src="./scripts/main.js"></script>
 </body>
 </html>

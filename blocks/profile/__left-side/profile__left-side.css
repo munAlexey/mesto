@@ -6,8 +6,6 @@
 
 @media screen and (min-width: 768px) {
   .profile__left-side {
-    display: flex;
-    align-items: center;
     flex-direction: row;
   }
 }

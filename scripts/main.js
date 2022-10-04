@@ -40,11 +40,10 @@ formBtn.addEventListener('click', function formSubmitHandler(event) {
 });
 
 let heart = document.querySelectorAll('.cards__like-btn');
-console.log(heart);
 
 for (let i = 0; i < heart.length; i++) {
   heart[i].addEventListener('click', function() {
-    heart[i].classList.add('cards__like-btn_state_active');
+    heart[i].classList.toggle('cards__like-btn_state_active');
   });
 };
 

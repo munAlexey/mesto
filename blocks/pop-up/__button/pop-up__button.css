@@ -12,11 +12,17 @@
   font-size: 14px;
   line-height: 17px;
   padding: 0;
+  margin-top: 15px;
+}
+
+.pop-up__button:hover {
+  opacity: .8;
 }
 
 @media screen and (min-width: 768px) {
   .pop-up__button {
     width: 358px;
+    height: 50px;
     margin-top: 18px;
   }
 }
