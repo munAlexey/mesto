@@ -2,14 +2,14 @@ let openPopupButton = document.querySelector('.profile__edit-btn');
 
 openPopupButton.addEventListener('click', function () {
   let openPopup = document.querySelector('.pop-up');
-  openPopup.classList.remove('pop-up-close');
+  openPopup.classList.remove('pop-up_close');
 });
 
 let closePopupButton = document.querySelector('.pop-up__close-btn');
 let closePopup = document.querySelector('.pop-up');
 
 closePopupButton.addEventListener('click', function () {
-  closePopup.classList.add('pop-up-close');
+  closePopup.classList.add('pop-up_close');
 });
 
 let form = document.querySelector('.pop-up__form');
@@ -24,18 +24,18 @@ formBtn.addEventListener('click', function formSubmitHandler(event) {
   event.preventDefault();
   if (inputName.value === '') {
     titleProfile.textContent = 'Жак-Ив Кусто';
-    closePopup.classList.add('pop-up-close');
+    closePopup.classList.add('pop-up_close');
   } else {
     titleProfile.textContent = inputName.value;
-    closePopup.classList.add('pop-up-close');
+    closePopup.classList.add('pop-up_close');
   }
 
   if (inputText.value === '') {
     subtitleProfile.textContent = 'Исследователь океана';
-    closePopup.classList.add('pop-up-close');
+    closePopup.classList.add('pop-up_close');
   } else {
     subtitleProfile.textContent = inputText.value;
-    closePopup.classList.add('pop-up-close');
+    closePopup.classList.add('pop-up_close');
   }
 });
 

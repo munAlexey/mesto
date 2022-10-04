@@ -11,10 +11,12 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  padding: 0;
 }
 
 @media screen and (min-width: 768px) {
   .pop-up__button {
     width: 358px;
+    margin-top: 18px;
   }
 }

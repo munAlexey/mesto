@@ -1,8 +1,6 @@
 .pop-up__block {
   width: 282px;
-  height: 322px;
-  margin: 0 auto;
-  margin-top: calc((100vh - 322px)/2);
+  margin: auto;
   background-color: #ffffff;
   border-radius: 10px;
   position: relative;
@@ -11,7 +9,5 @@
 @media screen and (min-width: 768px) {
   .pop-up__block {
     width: 430px;
-    height: 330px;
-    margin-top: calc((100vh - 330px)/2);
   }
 }

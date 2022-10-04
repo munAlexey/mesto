@@ -60,5 +60,5 @@
 @import url('../blocks/pop-up/__title/pop-up__title.css');
 @import url('../blocks/pop-up/__input/pop-up__input.css');
 @import url('../blocks/pop-up/__block/pop-up__block.css');
-@import url('../blocks/pop-up-close/pop-up-close.css');
+@import url('../blocks/pop-up/_close/pop-up_close.css');
 

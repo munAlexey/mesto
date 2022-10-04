@@ -6,9 +6,6 @@
   border: none;
   padding: 0 0 13px 0;
   border-bottom: 1px solid rgba(00, 00, 00, .2);
-}
-
-.pop-up__input::placeholder {
   font-family: 'Inter', Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -17,7 +14,7 @@
   color: #000000;
 }
 
-.pop-up__input[type="text"] {
+.pop-up__input::placeholder {
   font-family: 'Inter', Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
