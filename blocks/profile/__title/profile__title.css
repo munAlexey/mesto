@@ -6,8 +6,25 @@
   font-size: 27px;
   line-height: 33px;
   text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
   width: 189px;
+}
+
+
+@media screen and (min-width: 768px) {
+  .profile__title {
+    margin: 0 0 16px 0;
+    width: 208px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .profile__title {
+    font-size: 34px;
+    line-height: 43px;
+    width: 250px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
