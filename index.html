@@ -39,6 +39,9 @@
       <section class="cards">
         <ul class="cards__list">
           <li class="cards__item">
+            <button class="cards__delete">
+              <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
+            </button>
             <picture>
               <source 
               srcset="./img/1280/img-1.jpg"
@@ -55,6 +58,9 @@
             </div>
           </li>
           <li class="cards__item">
+            <button class="cards__delete">
+              <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
+            </button>
             <picture>
               <source 
               srcset="./img/1280/img-2.jpg"
@@ -71,6 +77,9 @@
             </div>
           </li>
           <li class="cards__item">
+            <button class="cards__delete">
+              <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
+            </button>
             <picture>
               <source 
               srcset="./img/1280/img-3.jpg"
@@ -87,6 +96,9 @@
             </div>
           </li>
           <li class="cards__item">
+            <button class="cards__delete">
+              <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
+            </button>
             <picture>
               <source 
               srcset="./img/1280/img-4.jpg"
@@ -103,6 +115,9 @@
             </div>
           </li>
           <li class="cards__item">
+            <button class="cards__delete">
+              <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
+            </button>
             <picture>
               <source 
               srcset="./img/1280/img-5.jpg"
@@ -119,6 +134,9 @@
             </div>
           </li>
           <li class="cards__item">
+            <button class="cards__delete">
+              <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
+            </button>
             <picture>
               <source 
               srcset="./img/1280/img-6.jpg"
@@ -159,6 +177,27 @@
           <input type="text" class="pop-up__input" placeholder="Введите ваше имя" id="pop-up__name">
           <input type="text" class="pop-up__input" placeholder="Введите вашу профессию" id="pop-up__text">
           <button type="submit" class="pop-up__button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="pop-up pop-up_close">
+      <div class="pop-up__block">
+        <button type="button" class="pop-up__close-btn">
+          <picture>
+            <source 
+              srcset="./img/768/close-btn.svg"
+              media="(min-width: 768px)">
+            <img src="./img/close-btn.svg" alt="закрыть">
+          </picture>
+        </button>
+        <h2 class="pop-up__title">
+          Новое место
+        </h2>
+        <form class="pop-up__form" name="pop-up-form">
+          <input type="text" class="pop-up__input" placeholder="Название" id="pop-up__name">
+          <input type="text" class="pop-up__input" placeholder="Ссылка на картинку" id="pop-up__text">
+          <button type="submit" class="pop-up__button">Создать</button>
         </form>
       </div>
     </div>

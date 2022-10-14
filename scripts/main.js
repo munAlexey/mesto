@@ -1,9 +1,9 @@
-let openPopupButton = document.querySelector('.profile__edit-btn');
-let form = document.querySelector('.pop-up__form');
-let inputName = form.querySelector('#pop-up__name');
-let inputText = form.querySelector('#pop-up__text');
-let titleProfile = document.querySelector('.profile__title');
-let subtitleProfile = document.querySelector('.profile__subtitle');
+const openPopupButton = document.querySelector('.profile__edit-btn');
+const form = document.querySelector('.pop-up__form');
+const inputName = form.querySelector('#pop-up__name');
+const inputText = form.querySelector('#pop-up__text');
+const titleProfile = document.querySelector('.profile__title');
+const subtitleProfile = document.querySelector('.profile__subtitle');
 
 openPopupButton.addEventListener('click', function () {
   let openPopup = document.querySelector('.pop-up');
@@ -12,8 +12,8 @@ openPopupButton.addEventListener('click', function () {
   inputText.value = subtitleProfile.textContent;
 });
 
-let closePopupButton = document.querySelector('.pop-up__close-btn');
-let closePopup = document.querySelector('.pop-up');
+const closePopupButton = document.querySelector('.pop-up__close-btn');
+const closePopup = document.querySelector('.pop-up');
 
 closePopupButton.addEventListener('click', function () {
   closePopup.classList.add('pop-up_close');
