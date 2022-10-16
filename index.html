@@ -38,28 +38,25 @@
 
       <section class="cards">
         <ul class="cards__list">
-        
         </ul>
         <template id="item">
-          <ul class="cards__list">
-            <li class="cards__item">
-              <button class="cards__delete">
-                <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
+          <li class="cards__item">
+            <button class="cards__delete">
+              <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
+            </button>
+            <picture>
+              <source 
+              media="(min-width: 1280px)">
+              <source 
+              media="(min-width: 768px)">
+              <img class="cards__img" src="" alt="Предприятие">
+            </picture>
+            <div class="cards__text-block">
+              <h3 class="cards__title"></h3>
+              <button type="button" class="cards__like-btn">
               </button>
-              <picture>
-                <source 
-                media="(min-width: 1280px)">
-                <source 
-                media="(min-width: 768px)">
-                <img class="cards__img" src="" alt="Предприятие">
-              </picture>
-              <div class="cards__text-block">
-                <h3 class="cards__title"></h3>
-                <button type="button" class="cards__like-btn">
-                </button>
-              </div>
-            </li>
-          </ul>
+            </div>
+          </li>
         </template>
       </section>
     </main>

@@ -91,13 +91,47 @@ closeAddBtn.addEventListener('click', function(evt) {
 
 const inputTitle = document.querySelector('#pop-up__title');
 const inputLink = document.querySelector('#pop-up__link');
+const likeBtn = Array.from(document.querySelectorAll('.cards__like-btn'));  // Лайк карточки
+const deletBtn = Array.from(document.querySelectorAll('.cards__delete'));  // Удаление карточки
 
 formAdd.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
-  const cardsItem = cardsTemplate.querySelector('.cards__item').cloneNode(true);
+
+  const cardsItem = cardsTemplate.querySelector('.cards__item').cloneNode(true); 
+  const likeBtn = cardsItem.querySelector('.cards__like-btn');
+  const deletBtn = cardsItem.querySelector('.cards__delete');
+
   cardsItem.querySelector('.cards__title').textContent = inputTitle.value;
   cardsItem.querySelector('.cards__img').src = inputLink.value;
   cardsItem.querySelector('.cards__img').alt = inputTitle.value;
+
+  // Лайк карточки
+
+  likeBtn.addEventListener('click', () => {
+    cardsItem.querySelector('.cards__like-btn').classList.toggle('cards__like-btn_state_active');
+  });
   cardsList.prepend(cardsItem);
   openAddMenu.classList.add('pop-up_add-btn');
+
+  // Удаление карточки
+
+  deletBtn.addEventListener('click', () => {
+    deletBtn.closest('.cards__item').remove();
+  });
+});
+
+// Лайк карточки
+
+likeBtn.map(function (item) {
+  item.addEventListener('click', function() {
+    item.classList.toggle('cards__like-btn_state_active');
+  });
+});
+
+// Удаление карточки
+
+deletBtn.forEach(function (item) {
+  item.addEventListener('click', function() {
+    item.closest('.cards__item').remove();
+  });
 });
