@@ -50,10 +50,13 @@
 
 @import url('../blocks/pop-up/pop-up.css');
 @import url('../blocks/pop-up/__button/pop-up__button.css');
+@import url('../blocks/pop-up/__add-btn/pop-up__add-btn.css');
 @import url('../blocks/pop-up/__close-btn/pop-up__close-btn.css');
+@import url('../blocks/pop-up/__close-add-btn/pop-up__close-add-btn.css');
 @import url('../blocks/pop-up/__form/pop-up__form.css');
 @import url('../blocks/pop-up/__form-add/pop-up__form-add.css');
 @import url('../blocks/pop-up/__title/pop-up__title.css');
 @import url('../blocks/pop-up/__input/pop-up__input.css');
 @import url('../blocks/pop-up/__block/pop-up__block.css');
+@import url('../blocks/pop-up/_add-btn/pop-up_add-btn.css');
 @import url('../blocks/pop-up/_close/pop-up_close.css');
