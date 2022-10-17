@@ -9,12 +9,18 @@ const closePopupButton = document.querySelector('.pop-up__close-btn');
 
 openPopupButton.addEventListener('click', function () {
   openPopup.classList.remove('pop-up_close');
+  openPopup.classList.add('action_open');
+  openPopup.classList.remove('action_close');
   inputName.value = titleProfile.textContent;
   inputText.value = subtitleProfile.textContent;
 });
 
 closePopupButton.addEventListener('click', function () {
-  openPopup.classList.add('pop-up_close');
+  openPopup.classList.add('action_close');
+  openPopup.classList.remove('action_open');
+  setTimeout(() => {
+    openPopup.classList.add('pop-up_close');
+  }, 950);
 });
 
 form.addEventListener('submit', function formSubmitHandler(event) {
@@ -83,10 +89,16 @@ const formAdd = document.querySelector('.pop-up__form-add');
 
 openAddBtn.addEventListener('click', function() {
   openAddMenu.classList.remove('pop-up_add-btn');
+  openAddMenu.classList.add('action_open');
+  openAddMenu.classList.remove('action_close');
 });
 
-closeAddBtn.addEventListener('click', function(evt) {
-  openAddMenu.classList.add('pop-up_add-btn');
+closeAddBtn.addEventListener('click', function() {
+  openAddMenu.classList.add('action_close');
+  setTimeout(() => {
+    openAddMenu.classList.add('pop-up_add-btn');
+    openAddMenu.classList.remove('action_open');
+  }, 950);
 });
 
 const inputTitle = document.querySelector('#pop-up__title');
@@ -94,16 +106,44 @@ const inputLink = document.querySelector('#pop-up__link');
 const likeBtn = Array.from(document.querySelectorAll('.cards__like-btn'));  // Лайк карточки
 const deletBtn = Array.from(document.querySelectorAll('.cards__delete'));  // Удаление карточки
 
+// Открытие попапа с картинкой
+
+const fullImg = document.querySelector('.cards__full-item');
+const cardImg = cardsList.querySelectorAll('.cards__img');
+const cardsFullImg = fullImg.querySelector('.cards__full-img');
+const cardsFullTitle = fullImg.querySelector('.cards__full-title');
+const cardsFullCloseBtn = fullImg.querySelector('.cards__full-close'); 
+const cardsBlockAnimation =  fullImg.querySelector('.cards__full-block');
+
+cardImg.forEach(function(item, index) {
+  item.addEventListener('click', function() {
+    cardsFullImg.src = initialCards[index].link;
+    cardsFullTitle.textContent = initialCards[index].name;
+    fullImg.classList.remove('cards__full-open');
+    cardsBlockAnimation.classList.add('action_open');
+    cardsBlockAnimation.classList.remove('action_close');
+  })
+});
+
+cardsFullCloseBtn.addEventListener('click', () => {
+  cardsBlockAnimation.classList.add('action_close');
+  setTimeout(() => {
+    fullImg.classList.add('cards__full-open');
+    cardsBlockAnimation.classList.remove('action_open');
+  }, 950);
+});
+
 formAdd.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
 
   const cardsItem = cardsTemplate.querySelector('.cards__item').cloneNode(true); 
+  const cardsImg = cardsItem.querySelector('.cards__img');
   const likeBtn = cardsItem.querySelector('.cards__like-btn');
   const deletBtn = cardsItem.querySelector('.cards__delete');
 
   cardsItem.querySelector('.cards__title').textContent = inputTitle.value;
-  cardsItem.querySelector('.cards__img').src = inputLink.value;
-  cardsItem.querySelector('.cards__img').alt = inputTitle.value;
+  cardsImg.src = inputLink.value;
+  cardsImg.alt = inputTitle.value;
 
   // Лайк карточки
 
@@ -117,6 +157,25 @@ formAdd.addEventListener('submit', function formSubmitHandler(event) {
 
   deletBtn.addEventListener('click', () => {
     deletBtn.closest('.cards__item').remove();
+  });
+  
+  // Открытие попапа с картинкой
+
+  cardsImg.addEventListener('click', function() {
+    cardsFullImg.src = inputLink.value;
+    cardsFullImg.alt = inputTitle.value;
+    cardsFullTitle.textContent = inputTitle.value;
+    fullImg.classList.remove('cards__full-open');
+    cardsBlockAnimation.classList.add('action_open');
+    cardsBlockAnimation.classList.remove('action_close');
+  });
+
+  cardsFullCloseBtn.addEventListener('click', () => {
+    cardsBlockAnimation.classList.add('action_close');
+    setTimeout(() => {
+      fullImg.classList.add('cards__full-open');
+      cardsBlockAnimation.classList.remove('action_open');
+    }, 950);
   });
 });
 

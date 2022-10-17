@@ -1,0 +1,20 @@
+.cards__full-close {
+  position: absolute;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  top: -36px;
+  right: 0;
+  padding: 0;
+}
+
+.cards__full-close:hover {
+  opacity: .6;
+}
+
+@media screen and (min-width: 768px) {
+  .cards__full-close {
+    top: -52px;
+    right: -52px;
+  }
+}

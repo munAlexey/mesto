@@ -58,6 +58,26 @@
             </div>
           </li>
         </template>
+        <template id="full-img">
+          <li class="cards__img-full cards__img-open">
+            <button type="button" class="pop-up__close-btn">
+              <picture>
+                <source 
+                  srcset="./img/768/close-btn.svg"
+                  media="(min-width: 768px)">
+                <img src="./img/close-btn.svg" alt="закрыть">
+              </picture>
+            </button>
+            <picture>
+              <source 
+              media="(min-width: 1280px)">
+              <source 
+              media="(min-width: 768px)">
+              <img class="cards__img">
+            </picture>
+            <h3 class="cards__title"></h3>
+          </li>
+        </template>
       </section>
     </main>
 
@@ -85,7 +105,20 @@
         </form>
       </div>
     </div>
-
+    <li class="cards__full-item cards__full-open">
+      <div class="cards__full-block">
+        <button type="button" class="cards__full-close">
+          <picture>
+            <source 
+              srcset="./img/768/close-btn.svg"
+              media="(min-width: 768px)">
+            <img src="./img/close-btn.svg" class="cards__full-close-btn" alt="закрыть">
+          </picture>
+        </button>
+        <img class="cards__full-img">
+        <h3 class="cards__full-title">text asdasd</h3>
+      </div>
+    </li>
     <div class="pop-up pop-up_add-btn">
       <div class="pop-up__block">
         <button type="button" class="pop-up__close-add-btn">
