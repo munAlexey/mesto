@@ -21,7 +21,6 @@
 
 /* full img */
 
-@import url('../blocks/cards/__full-item/cards__full-item.css');
 @import url('../blocks/cards/__full-block/cards__full-block.css');
 @import url('../blocks/cards/__full-close/cards__full-close.css');
 @import url('../blocks/cards/__full-close-btn/cards__full-close-btn.css');

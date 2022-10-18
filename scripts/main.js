@@ -7,21 +7,29 @@ const subtitleProfile = document.querySelector('.profile__subtitle');
 const openPopup = document.querySelector('.pop-up_profile');
 const closePopupButton = document.querySelector('.pop-up__close-btn');
 
-openPopupButton.addEventListener('click', function () {
-  openPopup.classList.remove('pop-up_opened');
-  openPopup.classList.add('action_open');
-  openPopup.classList.remove('action_close');
-  inputName.value = titleProfile.textContent;
-  inputText.value = subtitleProfile.textContent;
-});
+function popupOpen(openBtn, popupClass) {
+  openBtn.addEventListener('click', function () {
+    popupClass.classList.remove('pop-up_opened');
+    popupClass.classList.add('action_open');
+    popupClass.classList.remove('action_close');
+  });
+};
 
-closePopupButton.addEventListener('click', function () {
-  openPopup.classList.add('action_close');
-  openPopup.classList.remove('action_open');
-  setTimeout(() => {
-    openPopup.classList.add('pop-up_opened');
-  }, 950);
-});
+function popupClose(closeBtn, popupClass) {
+  closeBtn.addEventListener('click', function () {
+    popupClass.classList.add('action_close');
+    popupClass.classList.remove('action_open');
+    setTimeout(() => {
+      popupClass.classList.add('pop-up_opened');
+    }, 950);
+  });
+};
+
+popupOpen(openPopupButton, openPopup);
+inputName.value = titleProfile.textContent;
+inputText.value = subtitleProfile.textContent;
+popupClose(closePopupButton, openPopup);
+
 
 form.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
@@ -87,19 +95,9 @@ const openAddMenu = document.querySelector('.pop-up_add');
 const closeAddBtn = openAddMenu.querySelector('.pop-up__close-btn');
 const formAdd = document.querySelector('.pop-up__form-add');
 
-openAddBtn.addEventListener('click', function() {
-  openAddMenu.classList.remove('pop-up_opened');
-  openAddMenu.classList.add('action_open');
-  openAddMenu.classList.remove('action_close');
-});
+popupOpen(openAddBtn, openAddMenu);
 
-closeAddBtn.addEventListener('click', function() {
-  openAddMenu.classList.add('action_close');
-  setTimeout(() => {
-    openAddMenu.classList.add('pop-up_opened');
-    openAddMenu.classList.remove('action_open');
-  }, 950);
-});
+popupClose(closeAddBtn, openAddMenu);
 
 const inputTitle = document.querySelector('#pop-up__title');
 const inputLink = document.querySelector('#pop-up__link');
@@ -113,25 +111,18 @@ const cardImg = cardsList.querySelectorAll('.cards__img');
 const cardsFullImg = fullImg.querySelector('.cards__full-img');
 const cardsFullTitle = fullImg.querySelector('.cards__full-title');
 const cardsFullCloseBtn = fullImg.querySelector('.pop-up__close-btn'); 
-const cardsBlockAnimation =  fullImg.querySelector('.cards__full-block');
 
 cardImg.forEach(function(item, index) {
   item.addEventListener('click', function() {
     cardsFullImg.src = initialCards[index].link;
     cardsFullTitle.textContent = initialCards[index].name;
     fullImg.classList.remove('pop-up_opened');
-    cardsBlockAnimation.classList.add('action_open');
-    cardsBlockAnimation.classList.remove('action_close');
+    fullImg.classList.add('action_open');
+    fullImg.classList.remove('action_close');
   })
 });
 
-cardsFullCloseBtn.addEventListener('click', () => {
-  cardsBlockAnimation.classList.add('action_close');
-  setTimeout(() => {
-    fullImg.classList.add('pop-up_opened');
-    cardsBlockAnimation.classList.remove('action_open');
-  }, 950);
-});
+popupClose(cardsFullCloseBtn, fullImg);
 
 formAdd.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
@@ -161,22 +152,13 @@ formAdd.addEventListener('submit', function formSubmitHandler(event) {
   
   // Открытие попапа с картинкой
 
-  cardsImg.addEventListener('click', function() {
-    cardsFullImg.src = inputLink.value;
-    cardsFullImg.alt = inputTitle.value;
-    cardsFullTitle.textContent = inputTitle.value;
-    fullImg.classList.remove('pop-up_opened');
-    cardsBlockAnimation.classList.add('action_open');
-    cardsBlockAnimation.classList.remove('action_close');
-  });
+  popupOpen(cardsImg, fullImg);
 
-  cardsFullCloseBtn.addEventListener('click', () => {
-    cardsBlockAnimation.classList.add('action_close');
-    setTimeout(() => {
-      fullImg.classList.add('pop-up_opened');
-      cardsBlockAnimation.classList.remove('action_open');
-    }, 950);
-  });
+  cardsFullImg.src = inputLink.value;
+  cardsFullImg.alt = inputTitle.value;
+  cardsFullTitle.textContent = inputTitle.value;
+
+  popupClose(cardsFullCloseBtn, fullImg);
 });
 
 // Лайк карточки
