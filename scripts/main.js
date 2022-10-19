@@ -48,9 +48,9 @@ function createCard(title, link) {
   cardsImg.alt = title;
 
   if (cardsTitle.textContent !== title) {
-    cardsTitle.textContent = title.value;
-    cardsImg.alt = title.value;
-    cardsImg.src = link.value;
+    cardsTitle.textContent = title;
+    cardsImg.alt = title;
+    cardsImg.src = link;
   }
 
   // Лайк карточки
@@ -77,9 +77,9 @@ function createCard(title, link) {
     cardsFullTitle.textContent = title;
 
     if (cardsFullTitle.textContent !== title) {
-      cardsFullImg.src = link.value;
-      cardsFullImg.alt = title.value;
-      cardsFullTitle.textContent = title.value;
+      cardsFullImg.src = link;
+      cardsFullImg.alt = title;
+      cardsFullTitle.textContent = title;
     }
   });
 
@@ -192,8 +192,7 @@ cardsFullCloseBtn.addEventListener('click', function () {
 
 formAdd.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
-  createCard(inputTitle, inputLink);
-  const cards = document.querySelector('.cards__list');
+  createCard(inputTitle.value, inputLink.value);
   if (inputTitle.value !== '') {
     inputTitle.value = '';
   }
