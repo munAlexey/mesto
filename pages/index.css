@@ -19,6 +19,14 @@
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__block/header__block.css');
 
+/* full img */
+
+@import url('../blocks/cards/__full-block/cards__full-block.css');
+@import url('../blocks/cards/__full-close/cards__full-close.css');
+@import url('../blocks/cards/__full-close-btn/cards__full-close-btn.css');
+@import url('../blocks/cards/__full-img/cards__full-img.css');
+@import url('../blocks/cards/__full-title/cards__full-title.css');
+
 /* section profile */
 
 @import url('../blocks/profile/profile.css');
@@ -62,15 +70,4 @@
 @import url('../blocks/pop-up/__title/pop-up__title.css');
 @import url('../blocks/pop-up/__input/pop-up__input.css');
 @import url('../blocks/pop-up/__block/pop-up__block.css');
-@import url('../blocks/pop-up/_add-btn/pop-up_add-btn.css');
-@import url('../blocks/pop-up/_close/pop-up_close.css');
-
-/* full img */
-
-@import url('../blocks/cards/__full-item/cards__full-item.css');
-@import url('../blocks/cards/__full-block/cards__full-block.css');
-@import url('../blocks/cards/__full-close/cards__full-close.css');
-@import url('../blocks/cards/__full-open/cards__full-open.css');
-@import url('../blocks/cards/__full-close-btn/cards__full-close-btn.css');
-@import url('../blocks/cards/__full-img/cards__full-img.css');
-@import url('../blocks/cards/__full-title/cards__full-title.css');
+@import url('../blocks/pop-up/_opened/pop-up_opened.css');
