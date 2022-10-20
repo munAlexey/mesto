@@ -101,6 +101,7 @@ openPopupButton.addEventListener('click', function () {
   openPopup.classList.add('action_open');
   openPopup.classList.remove('action_close');
 });
+
 inputName.value = titleProfile.textContent;
 inputText.value = subtitleProfile.textContent;
 
@@ -109,6 +110,8 @@ closePopupButton.addEventListener('click', function () {
   openPopup.classList.remove('action_open');
   setTimeout(() => {
     closePopup(openPopup);
+    inputName.value = titleProfile.textContent;
+    inputText.value = subtitleProfile.textContent;
   }, 950);
 });
 
