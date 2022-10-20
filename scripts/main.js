@@ -193,19 +193,13 @@ cardsFullCloseBtn.addEventListener('click', function () {
 formAdd.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
   createCard(inputTitle.value, inputLink.value);
+  if (inputTitle.value !== '') {
+    inputTitle.value = '';
+  }
 
-  // if (inputTitle.value !== '') {    на всякий случай
-  //   inputTitle.value = '';         // Нужно очищать инпуты после успешного добавления карточки,
-  // }                                //  для того чтобы пользователь мог сразу же еще раз добавить что-то новое 
-                                      //  и ему не пришлось бы очищать инпуты вручную перед этим
-                                      
-                                      // Вы написали после первой первой проверки что их нужно очищать
-
-  // if (inputLink.value !== '') {
-  //   inputLink.value = '';
-  // }
-  
-
+  if (inputLink.value !== '') {
+    inputLink.value = '';
+  }
   
   openAddMenu.classList.add('action_close');
   openAddMenu.classList.remove('action_open');
