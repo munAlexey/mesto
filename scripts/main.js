@@ -83,12 +83,19 @@ function createCard(title, link) {
     }
   });
 
+  const clickClose = (evt) => {
+    setTimeout(() => {
+      closePopup(evt.target.closest('.pop-up'));
+    }, 950);
+  }
+  const closePopupButton = Array.from(document.querySelectorAll('.pop-up__close-btn'))
+  closePopupButton.forEach((element) => {
+    element.addEventListener('click', clickClose);
+  });
+
   cardsFullCloseBtn.addEventListener('click', function () {
     fullImg.classList.add('action_close');
     fullImg.classList.remove('action_open');
-    setTimeout(() => {
-      closePopup(fullImg);
-    }, 950);
   });
 
   cardsList.prepend(cardsItem);
@@ -109,7 +116,6 @@ closePopupButton.addEventListener('click', function () {
   openPopup.classList.add('action_close');
   openPopup.classList.remove('action_open');
   setTimeout(() => {
-    closePopup(openPopup);
     inputName.value = titleProfile.textContent;
     inputText.value = subtitleProfile.textContent;
   }, 950);
@@ -180,9 +186,6 @@ openAddBtn.addEventListener('click', function () {
 closeAddBtn.addEventListener('click', function () {
   openAddMenu.classList.add('action_close');
   openAddMenu.classList.remove('action_open');
-  setTimeout(() => {
-    closePopup(openAddMenu);
-  }, 950);
 });
 
 cardsFullCloseBtn.addEventListener('click', function () {
