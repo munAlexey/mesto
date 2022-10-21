@@ -5,7 +5,7 @@ const inputText = form.querySelector('#pop-up__text');
 const titleProfile = document.querySelector('.profile__title');
 const subtitleProfile = document.querySelector('.profile__subtitle');
 const openPopup = document.querySelector('.pop-up_profile');
-const closePopupButton = document.querySelector('.pop-up__close-btn');
+const closeProfileButton = document.querySelector('.pop-up__close-btn');
 
 const cardsTemplate = document.querySelector('#item').content;
 const cardsList = document.querySelector('.cards__list');
@@ -27,6 +27,16 @@ const cardImg = cardsList.querySelector('.cards__img');
 const cardsFullImg = fullImg.querySelector('.cards__full-img');
 const cardsFullTitle = fullImg.querySelector('.cards__full-title');
 const cardsFullCloseBtn = fullImg.querySelector('.pop-up__close-btn'); 
+
+const clickClose = (evt) => {
+  setTimeout(() => {
+    closePopup(evt.target.closest('.pop-up'));
+  }, 950);
+}
+const closePopupButton = Array.from(document.querySelectorAll('.pop-up__close-btn'));
+closePopupButton.forEach((element) => {
+  element.addEventListener('click', clickClose);
+});
 
 function openPopUp(popupClass) {
   popupClass.classList.remove('pop-up_opened');
@@ -83,25 +93,13 @@ function createCard(title, link) {
     }
   });
 
-  const clickClose = (evt) => {
-    setTimeout(() => {
-      closePopup(evt.target.closest('.pop-up'));
-    }, 950);
-  }
-  const closePopupButton = Array.from(document.querySelectorAll('.pop-up__close-btn'))
-  closePopupButton.forEach((element) => {
-    element.addEventListener('click', clickClose);
-  });
-
-  cardsFullCloseBtn.addEventListener('click', function () {
-    fullImg.classList.add('action_close');
-    fullImg.classList.remove('action_open');
-  });
-
-  cardsList.prepend(cardsItem);
-  
   return cardsItem;
 }
+
+function renderCard(item) {
+  cardsList.prepend(item);
+}
+
 
 openPopupButton.addEventListener('click', function () {
   openPopUp(openPopup);
@@ -112,7 +110,7 @@ openPopupButton.addEventListener('click', function () {
 inputName.value = titleProfile.textContent;
 inputText.value = subtitleProfile.textContent;
 
-closePopupButton.addEventListener('click', function () {
+closeProfileButton.addEventListener('click', function () {
   openPopup.classList.add('action_close');
   openPopup.classList.remove('action_open');
   setTimeout(() => {
@@ -138,6 +136,9 @@ form.addEventListener('submit', function formSubmitHandler(event) {
   
   openPopup.classList.add('action_close');
   openPopup.classList.remove('action_open');
+  setTimeout(() => {
+    closePopup(openPopup);
+  }, 950);
 });
 
 // Шесть карточек «из коробки»
@@ -171,7 +172,7 @@ const initialCards = [
 
 
 initialCards.forEach(function (item) {
-  createCard(item.name, item.link);
+  renderCard(createCard(item.name, item.link));
 });
 
 openAddBtn.addEventListener('click', function () {
@@ -192,7 +193,7 @@ cardsFullCloseBtn.addEventListener('click', function () {
 
 formAdd.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
-  createCard(inputTitle.value, inputLink.value);
+  renderCard(createCard(inputTitle.value, inputLink.value));
   if (inputTitle.value !== '') {
     inputTitle.value = '';
   }
@@ -203,4 +204,7 @@ formAdd.addEventListener('submit', function formSubmitHandler(event) {
   
   openAddMenu.classList.add('action_close');
   openAddMenu.classList.remove('action_open');
+  setTimeout(() => {
+    closePopup(openAddMenu);
+  }, 950);
 });
