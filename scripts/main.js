@@ -138,9 +138,6 @@ form.addEventListener('submit', function formSubmitHandler(event) {
   
   openPopup.classList.add('action_close');
   openPopup.classList.remove('action_open');
-  setTimeout(() => {
-    closePopup(openPopup);
-  }, 950);
 });
 
 // Шесть карточек «из коробки»
@@ -191,9 +188,6 @@ closeAddBtn.addEventListener('click', function () {
 cardsFullCloseBtn.addEventListener('click', function () {
   fullImg.classList.add('action_close');
   fullImg.classList.remove('action_open');
-  setTimeout(() => {
-    closePopup(fullImg);
-  }, 950);
 });
 
 formAdd.addEventListener('submit', function formSubmitHandler(event) {
@@ -209,7 +203,4 @@ formAdd.addEventListener('submit', function formSubmitHandler(event) {
   
   openAddMenu.classList.add('action_close');
   openAddMenu.classList.remove('action_open');
-  setTimeout(() => {
-    closePopup(openAddMenu);
-  }, 950);
 });
