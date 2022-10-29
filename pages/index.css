@@ -69,5 +69,6 @@
 @import url('../blocks/pop-up/__form-add/pop-up__form-add.css');
 @import url('../blocks/pop-up/__title/pop-up__title.css');
 @import url('../blocks/pop-up/__input/pop-up__input.css');
+@import url('../blocks/pop-up/__input/_type/form__input_type_error.css');
 @import url('../blocks/pop-up/__block/pop-up__block.css');
 @import url('../blocks/pop-up/_opened/pop-up_opened.css');

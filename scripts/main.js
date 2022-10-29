@@ -1,11 +1,12 @@
 const openPopupButton = document.querySelector('.profile__edit-btn');
-const form = document.querySelector('.pop-up__form');
+const form = document.forms.formProfile;
 const inputName = form.querySelector('#pop-up__name');
 const inputText = form.querySelector('#pop-up__text');
 const titleProfile = document.querySelector('.profile__title');
 const subtitleProfile = document.querySelector('.profile__subtitle');
 const openPopup = document.querySelector('.pop-up_profile');
 const closeProfileButton = document.querySelector('.pop-up__close-btn');
+const formInput = form.querySelector('.pop-up__input');
 
 const cardsTemplate = document.querySelector('#item').content;
 const cardsList = document.querySelector('.cards__list');
@@ -18,7 +19,7 @@ const inputLink = document.querySelector('#pop-up__link');
 const openAddBtn = document.querySelector('.profile__add-button');
 const openAddMenu = document.querySelector('.pop-up_add');
 const closeAddBtn = openAddMenu.querySelector('.pop-up__close-btn');
-const formAdd = document.querySelector('.pop-up__form-add');
+const formAdd = document.forms.formAdd;
 
 // Открытие попапа с картинкой
 
@@ -27,6 +28,54 @@ const cardImg = cardsList.querySelector('.cards__img');
 const cardsFullImg = fullImg.querySelector('.cards__full-img');
 const cardsFullTitle = fullImg.querySelector('.cards__full-title');
 const cardsFullCloseBtn = fullImg.querySelector('.pop-up__close-btn'); 
+
+// Шесть карточек «из коробки»
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]; 
+
+const showInputError = () => {
+  formInput.classList.add('form__input_type_error');
+}
+
+const hideInputError = () => {
+  formInput.classList.remove('form__input_type_error');
+}
+
+const isValid = () => {
+  if (!formInput.validity.valid) {
+    showInputError();
+  } else {
+    hideInputError();
+  }
+  console.log(formInput.validity.valid)
+}
+
+formInput.addEventListener('input', isValid); 
 
 const clickClose = (evt) => {
   setTimeout(() => {
@@ -119,7 +168,6 @@ closeProfileButton.addEventListener('click', function () {
   }, 950);
 });
 
-
 form.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
   if (inputName.value === '') {
@@ -140,36 +188,6 @@ form.addEventListener('submit', function formSubmitHandler(event) {
     closePopup(openPopup);
   }, 950);
 });
-
-// Шесть карточек «из коробки»
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
-
 
 initialCards.forEach(function (item) {
   renderCard(createCard(item.name, item.link));

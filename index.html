@@ -81,9 +81,11 @@
         <h2 class="pop-up__title">
           Редактировать профиль
         </h2>
-        <form class="pop-up__form" name="pop-up-form">
-          <input type="text" class="pop-up__input" placeholder="Введите ваше имя" id="pop-up__name">
-          <input type="text" class="pop-up__input" placeholder="Введите вашу профессию" id="pop-up__text">
+        <form class="pop-up__form" name="formProfile" novalidate>
+          <input type="text" class="pop-up__input" name="name" placeholder="Введите ваше имя" id="pop-up__name" required minlength="2" maxlength="40">
+          <span class="pop-up__error"></span>
+          <input type="text" class="pop-up__input" name="profession" placeholder="Введите вашу профессию" id="pop-up__text" required minlength="2" maxlength="200">
+          <span class="pop-up__error"></span>
           <button type="submit" class="pop-up__button">Сохранить</button>
         </form>
       </div>
@@ -115,9 +117,9 @@
         <h2 class="pop-up__title">
           Новое место
         </h2>
-        <form class="pop-up__form-add" name="pop-up-form-add">
-          <input type="text" class="pop-up__input" placeholder="Название" id="pop-up__title">
-          <input type="text" class="pop-up__input" placeholder="Ссылка на картинку" id="pop-up__link">
+        <form class="pop-up__form-add" name="formAdd" novalidate>
+          <input type="text" class="pop-up__input" name="title" placeholder="Название" id="pop-up__title" required>
+          <input type="url" class="pop-up__input" name="link" placeholder="Ссылка на картинку" id="pop-up__link" required>
           <button type="submit" class="pop-up__add-btn">Создать</button>
         </form>
       </div>
