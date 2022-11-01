@@ -55,11 +55,11 @@ const enableValidation = (config) => {
 }
 
 const enableButton = (formSubmitButton, config) => {
-  formSubmitButton.removeAttribute('disabled');
+  formSubmitButton.setAttribute('disabled');
   formSubmitButton.classList.add(config.inactiveButtonClass);
 }
 const disabelButton = (formSubmitButton, config) => {
-  formSubmitButton.setAttribute('disabled', 'disabled');
+  formSubmitButton.removeAttribute('disabled', 'disabled');
   formSubmitButton.classList.remove(config.inactiveButtonClass);
 }
 
