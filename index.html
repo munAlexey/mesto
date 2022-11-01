@@ -81,12 +81,32 @@
         <h2 class="pop-up__title">
           Редактировать профиль
         </h2>
-        <form class="pop-up__form" name="formProfile" novalidate>
-          <input type="text" class="pop-up__input" name="name" placeholder="Введите ваше имя" id="pop-up__name" required minlength="2" maxlength="40">
-          <span class="pop-up__error"></span>
-          <input type="text" class="pop-up__input" name="profession" placeholder="Введите вашу профессию" id="pop-up__text" required minlength="2" maxlength="200">
-          <span class="pop-up__error"></span>
-          <button type="submit" class="pop-up__button">Сохранить</button>
+        <form class="pop-up__form pop-up__form-profile" name="formProfile" novalidate>
+          <label class="pop-up__form-label">
+            <input 
+            type="text" 
+            class="pop-up__input" 
+            name="name" 
+            placeholder="Введите ваше имя" 
+            id="pop-up__name" 
+            required 
+            minlength="2"
+            maxlength="40">
+            <span class="pop-up__span-error pop-up__name-error"></span>
+          </label>
+          <label class="pop-up__form-label">
+            <input 
+            type="text" 
+            class="pop-up__input" 
+            name="profession" 
+            placeholder="Введите вашу профессию" 
+            id="pop-up__text" 
+            required 
+            minlength="2" 
+            maxlength="200">
+            <span class="pop-up__span-error pop-up__text-error"></span>
+          </label>
+          <button type="submit" class="pop-up__button pop-up__profile-btn">Сохранить</button>
         </form>
       </div>
     </div>
@@ -117,14 +137,36 @@
         <h2 class="pop-up__title">
           Новое место
         </h2>
-        <form class="pop-up__form-add" name="formAdd" novalidate>
-          <input type="text" class="pop-up__input" name="title" placeholder="Название" id="pop-up__title" required>
-          <input type="url" class="pop-up__input" name="link" placeholder="Ссылка на картинку" id="pop-up__link" required>
-          <button type="submit" class="pop-up__add-btn">Создать</button>
+        <form class="pop-up__form pop-up__form-add" name="formAdd" novalidate>
+          <label class="pop-up__form-label">
+            <input 
+            type="text" 
+            class="pop-up__input" 
+            name="title" 
+            placeholder="Название" 
+            id="pop-up__title" 
+            required 
+            minlength="2" 
+            maxlength="40">
+            <span class="pop-up__span-error pop-up__title-error"></span>
+          </label>
+          <label class="pop-up__form-label">
+            <input 
+            type="url" 
+            class="pop-up__input" 
+            name="link" 
+            placeholder="Ссылка на картинку" 
+            id="pop-up__link" 
+            required 
+            pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?">
+            <span class="pop-up__span-error pop-up__link-error"></span>
+          </label>
+          <button type="submit" class="pop-up__button pop-up__add-btn" disabled>Создать</button>
         </form>
       </div>
     </div>
   </div>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/main.js"></script>
 </body>
 </html>

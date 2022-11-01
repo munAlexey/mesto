@@ -61,14 +61,17 @@
 /* pop-up */
 
 @import url('../blocks/pop-up/pop-up.css');
-@import url('../blocks/pop-up/__button/pop-up__button.css');
+@import url('../blocks/pop-up/__profile-btn/pop-up__profile-btn.css');
 @import url('../blocks/pop-up/__add-btn/pop-up__add-btn.css');
+@import url('../blocks/pop-up/__button/_disabled/pop-up__button_disabled.css');
 @import url('../blocks/pop-up/__close-btn/pop-up__close-btn.css');
 @import url('../blocks/pop-up/__close-add-btn/pop-up__close-add-btn.css');
-@import url('../blocks/pop-up/__form/pop-up__form.css');
+@import url('../blocks/pop-up/__form-profile/pop-up__form-profile.css');
 @import url('../blocks/pop-up/__form-add/pop-up__form-add.css');
 @import url('../blocks/pop-up/__title/pop-up__title.css');
 @import url('../blocks/pop-up/__input/pop-up__input.css');
-@import url('../blocks/pop-up/__input/_type/form__input_type_error.css');
+@import url('../blocks/pop-up/__form-label/pop-up__form-label.css');
+@import url('../blocks/pop-up/__input/_type/pop-up__input_type_error.css');
+@import url('../blocks/pop-up/__span-error/pop-up__span-error.css');
 @import url('../blocks/pop-up/__block/pop-up__block.css');
 @import url('../blocks/pop-up/_opened/pop-up_opened.css');
