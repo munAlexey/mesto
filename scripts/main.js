@@ -97,15 +97,15 @@ const closePopupSmoothly = (closePopupBlock) => {
   closePopupBlock.classList.remove('action_open');
 };
 
-function openPopUp(popupClass) {
+const openPopUp = (popupClass) => {
   popupClass.classList.remove('pop-up_opened');
 };
 
-function closePopup(popupClass) {
+const closePopup = (popupClass) => {
   popupClass.classList.add('pop-up_opened');
 };
 
-function createCard(title, link) {
+const createCard = (title, link) => {
   const cardsItem = cardsTemplate.querySelector('.cards__item').cloneNode(true); 
   const cardsImg = cardsItem.querySelector('.cards__img');
   const likeBtn = cardsItem.querySelector('.cards__like-btn');
@@ -154,7 +154,7 @@ function createCard(title, link) {
   return cardsItem;
 };
 
-function renderCard(item) {
+const renderCard = (item) => {
   cardsList.prepend(item);
 };
 
