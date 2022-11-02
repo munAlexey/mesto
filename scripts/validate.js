@@ -85,12 +85,12 @@ const closePopups = () => {
 }
 
 const enableButton = (formSubmitButton, config) => {
-  formSubmitButton.removeAttribute('disabled');
+  formSubmitButton.setAttribute('disabled', 'disabled');
   formSubmitButton.classList.add(config.inactiveButtonClass);
 }
 
 const disabelButton = (formSubmitButton, config) => {
-  formSubmitButton.setAttribute('disabled', 'disabled');
+  formSubmitButton.removeAttribute('disabled');
   formSubmitButton.classList.remove(config.inactiveButtonClass);
 }
 
