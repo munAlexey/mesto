@@ -71,22 +71,6 @@ closePopupButton.forEach((element) => {
   });
 });
 
-const closePopupKey = Array.from(document.querySelectorAll('.pop-up'));
-closePopupKey.forEach(formElement => {
-  formElement.addEventListener('keydown', (evt) => {
-    const key = evt.key;
-    if (key === 'Escape') {
-      clickClose(formElement);
-      closePopupSmoothly(formElement);
-    };
-  })
-
-  formElement.addEventListener('click', (evt) => {
-    const target = evt.target;
-    
-  });
-});
-
 const openPopupSmoothly = (openPopupBlock) => {
   openPopupBlock.classList.remove('action_close');
   openPopupBlock.classList.add('action_open');
