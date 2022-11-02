@@ -51,15 +51,29 @@ const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
   forms.forEach(form => {
     setEventListeners(form, config);
+    closePopupKey();
   })
 }
 
+const closePopupKey = () => {
+  const popups = Array.from(document.querySelectorAll('.pop-up'));
+  popups.forEach(formElement => {
+    formElement.addEventListener('click', (evt) => {
+      const target = evt.target;
+      if (target === formElement) {
+        clickClose(formElement);
+        closePopupSmoothly(formElement);
+      };
+    });
+  });
+}
+
 const enableButton = (formSubmitButton, config) => {
-  formSubmitButton.removeAttribute('disabled');
+  formSubmitButton.setAttribute('disabled', 'disabled');
   formSubmitButton.classList.add(config.inactiveButtonClass);
 }
 const disabelButton = (formSubmitButton, config) => {
-  formSubmitButton.setAttribute('disabled', 'disabled');
+  formSubmitButton.removeAttribute('disabled');
   formSubmitButton.classList.remove(config.inactiveButtonClass);
 }
 
