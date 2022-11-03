@@ -23,9 +23,9 @@ const formAdd = document.forms.formAdd;
 // Открытие попапа с картинкой
 
 const fullImg = document.querySelector('.pop-up_cards');
-const cardImg = cardsList.querySelector('.cards__img');
-const cardsFullImg = fullImg.querySelector('.cards__full-img');
-const cardsFullTitle = fullImg.querySelector('.cards__full-title');
+const cardImg = cardsList.querySelector('.card__img');
+const cardsFullImg = fullImg.querySelector('.card__full-img');
+const cardsFullTitle = fullImg.querySelector('.card__full-title');
 const cardsFullCloseBtn = fullImg.querySelector('.pop-up__close-btn'); 
 
 // Шесть карточек «из коробки»
@@ -90,11 +90,11 @@ const closePopup = (popupClass) => {
 };
 
 const createCard = (title, link) => {
-  const cardsItem = cardsTemplate.querySelector('.cards__item').cloneNode(true); 
-  const cardsImg = cardsItem.querySelector('.cards__img');
-  const likeBtn = cardsItem.querySelector('.cards__like-btn');
-  const deletBtn = cardsItem.querySelector('.cards__delete');
-  const cardsTitle = cardsItem.querySelector('.cards__title');
+  const cardsItem = cardsTemplate.querySelector('.card').cloneNode(true); 
+  const cardsImg = cardsItem.querySelector('.card__img');
+  const likeBtn = cardsItem.querySelector('.card__like-btn');
+  const deletBtn = cardsItem.querySelector('.card__delete');
+  const cardsTitle = cardsItem.querySelector('.card__title');
 
   cardsTitle.textContent = title;
   cardsImg.src = link;
@@ -109,13 +109,13 @@ const createCard = (title, link) => {
   // Лайк карточки
 
   likeBtn.addEventListener('click', () => {
-    cardsItem.querySelector('.cards__like-btn').classList.toggle('cards__like-btn_state_active');
+    cardsItem.querySelector('.card__like-btn').classList.toggle('card__like-btn_state_active');
   });
 
   // Удаление карточки
 
   deletBtn.addEventListener('click', () => {
-    deletBtn.closest('.cards__item').remove();
+    deletBtn.closest('.card').remove();
   });
   
   // Открытие попапа с картинкой

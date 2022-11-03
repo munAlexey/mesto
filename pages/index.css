@@ -21,11 +21,11 @@
 
 /* full img */
 
-@import url('../blocks/cards/__full-block/cards__full-block.css');
-@import url('../blocks/cards/__full-close/cards__full-close.css');
-@import url('../blocks/cards/__full-close-btn/cards__full-close-btn.css');
-@import url('../blocks/cards/__full-img/cards__full-img.css');
-@import url('../blocks/cards/__full-title/cards__full-title.css');
+@import url('../blocks/card/__full-block/card__full-block.css');
+@import url('../blocks/card/__full-close/card__full-close.css');
+@import url('../blocks/card/__full-close-btn/card__full-close-btn.css');
+@import url('../blocks/card/__full-img/card__full-img.css');
+@import url('../blocks/card/__full-title/card__full-title.css');
 
 /* section profile */
 
@@ -44,14 +44,17 @@
 /* section cards */
 
 @import url('../blocks/cards/cards.css');
-@import url('../blocks/cards/__img/cards__img.css');
-@import url('../blocks/cards/__item/cards__item.css');
-@import url('../blocks/cards/__like-btn/cards__like-btn.css');
-@import url('../blocks/cards/__like-btn/_state/cards__like-btn_state_active.css');
 @import url('../blocks/cards/__list/cards__list.css');
-@import url('../blocks/cards/__title/cards__title.css');
-@import url('../blocks/cards/__text-block/card__text-block.css');
-@import url('../blocks/cards/__delete/cards__delete.css');
+
+/* template card */
+
+@import url('../blocks/card/card.css');
+@import url('../blocks/card/__img/card__img.css');
+@import url('../blocks/card/__like-btn/card__like-btn.css');
+@import url('../blocks/card/__like-btn/_state/card__like-btn_state_active.css');
+@import url('../blocks/card/__title/card__title.css');
+@import url('../blocks/card/__text-block/card__text-block.css');
+@import url('../blocks/card/__delete/card__delete.css');
 
 /* footer */
 

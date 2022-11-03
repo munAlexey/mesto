@@ -39,28 +39,7 @@
       <section class="cards">
         <ul class="cards__list">
         </ul>
-        <template id="item">
-          <li class="cards__item">
-            <button class="cards__delete">
-              <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
-            </button>
-            <picture>
-              <source 
-              media="(min-width: 1280px)">
-              <source 
-              media="(min-width: 768px)">
-              <img class="cards__img">
-            </picture>
-            <div class="cards__text-block">
-              <h3 class="cards__title"></h3>
-              <button type="button" class="cards__like-btn">
-              </button>
-            </div>
-          </li>
-        </template>
-        <template id="full-img">
-          
-        </template>
+
       </section>
     </main>
 
@@ -111,17 +90,17 @@
       </div>
     </div>
     <div class="pop-up pop-up_opened pop-up_cards">
-      <div class="cards__full-block">
+      <div class="card__full-block">
         <button type="button" class="pop-up__close-btn">
           <picture>
             <source 
               srcset="./img/768/close-btn.svg"
               media="(min-width: 768px)">
-            <img src="./img/close-btn.svg" class="cards__full-close-btn" alt="закрыть">
+            <img src="./img/close-btn.svg" class="card__full-close-btn" alt="закрыть">
           </picture>
         </button>
-        <img class="cards__full-img" src="./img/1280/img-1.jpg" alt="Алекс">
-        <h3 class="cards__full-title"></h3>
+        <img class="card__full-img" src="./img/1280/img-1.jpg" alt="Алекс">
+        <h3 class="card__full-title"></h3>
       </div>
     </div>
     <div class="pop-up pop-up_opened pop-up_add">
@@ -166,6 +145,28 @@
       </div>
     </div>
   </div>
+  <template id="item">
+    <li class="card">
+      <button class="card__delete">
+        <img class="card__delete-img" src="./img/delete.svg" alt="удалить">
+      </button>
+      <picture>
+        <source 
+        media="(min-width: 1280px)">
+        <source 
+        media="(min-width: 768px)">
+        <img class="card__img">
+      </picture>
+      <div class="card__text-block">
+        <h3 class="card__title"></h3>
+        <button type="button" class="card__like-btn">
+        </button>
+      </div>
+    </li>
+  </template>
+  <template id="full-img">
+    
+  </template>
   <script src="./scripts/validate.js"></script>
   <script src="./scripts/main.js"></script>
 </body>

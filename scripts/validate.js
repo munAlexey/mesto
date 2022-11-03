@@ -102,5 +102,3 @@ enableValidation({
   errorClass: 'pop-up__span-error',
   inputErrorClass: 'pop-up__input_type_error',
 }); 
-
-// привет, прошу прощения мисскликнул и случайно отправил не успев запушить
