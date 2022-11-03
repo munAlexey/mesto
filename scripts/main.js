@@ -1,7 +1,8 @@
+const popups = Array.from(document.querySelectorAll('.pop-up'));
 const openPopupButton = document.querySelector('.profile__edit-btn');
-const form = document.forms.formProfile;
-const inputName = form.querySelector('#pop-up__name');
-const inputText = form.querySelector('#pop-up__text');
+const formProfile = document.forms.formProfile;
+const inputName = formProfile.querySelector('#pop-up__name');
+const inputText = formProfile.querySelector('#pop-up__text');
 const titleProfile = document.querySelector('.profile__title');
 const subtitleProfile = document.querySelector('.profile__subtitle');
 const openPopup = document.querySelector('.pop-up_profile');
@@ -15,18 +16,18 @@ const inputLink = document.querySelector('#pop-up__link');
 
 // Форма добавления карточки
 
-const openAddBtn = document.querySelector('.profile__add-button');
-const openAddMenu = document.querySelector('.pop-up_add');
-const closeAddBtn = openAddMenu.querySelector('.pop-up__close-btn');
-const formAdd = document.forms.formAdd;
+const profileAddBtn = document.querySelector('.profile__add-button');
+const popupAddCard = document.querySelector('.pop-up_add');
+const popupCloseCardBtn = popupAddCard.querySelector('.pop-up__close-btn');
+const formAddCard = document.forms.formAdd;
 
 // Открытие попапа с картинкой
 
-const fullImg = document.querySelector('.pop-up_cards');
+const popupCards = document.querySelector('.pop-up_cards');
 const cardImg = cardsList.querySelector('.card__img');
-const cardsFullImg = fullImg.querySelector('.card__full-img');
-const cardsFullTitle = fullImg.querySelector('.card__full-title');
-const cardsFullCloseBtn = fullImg.querySelector('.pop-up__close-btn'); 
+const cardsFullImg = popupCards.querySelector('.card__full-img');
+const cardsFullTitle = popupCards.querySelector('.card__full-title');
+const cardsFullCloseBtn = popupCards.querySelector('.pop-up__close-btn'); 
 
 // Шесть карточек «из коробки»
 
@@ -121,8 +122,10 @@ const createCard = (title, link) => {
   // Открытие попапа с картинкой
 
   cardsImg.addEventListener('click', function () {
-    openPopUp(fullImg);
-    openPopupSmoothly(fullImg);
+    openPopUp(popupCards);
+    openPopupSmoothly(popupCards);
+    addPopupKey(popupCards);
+    
 
     cardsFullImg.src = link;
     cardsFullImg.alt = title;
@@ -142,9 +145,47 @@ const renderCard = (item) => {
   cardsList.prepend(item);
 };
 
+const handleEscClose = (evt, formElement) => {
+  const key = evt.key;
+  if (key === 'Escape') {
+    clickClose(formElement);
+    closePopupSmoothly(formElement);
+  };
+}
+
+const addPopupKey = (formElement) => {
+  document.addEventListener('keydown', (evt) => {
+    handleEscClose(evt, formElement);
+  });
+}
+
+const removePopupKey = (formElement) => {
+  document.removeEventListener('keydown', (evt) => {
+    handleEscClose(evt, formElement);
+  });
+}
+
+const closePopupOutside = (formElement) => {
+  formElement.addEventListener('click', (evt) => {
+    const target = evt.target;
+    if (target === formElement) {
+      clickClose(formElement);
+      closePopupSmoothly(formElement);
+    };
+  });
+}
+
+const closePopups = () => {
+  popups.forEach(formElement => {
+    closePopupOutside(formElement);
+    removePopupKey(formElement);
+  });
+};
+
 openPopupButton.addEventListener('click', function () {
   openPopUp(openPopup);
   openPopupSmoothly(openPopup);
+  addPopupKey(openPopup);
 });
 
 inputName.value = titleProfile.textContent;
@@ -152,13 +193,14 @@ inputText.value = subtitleProfile.textContent;
 
 closeProfileButton.addEventListener('click', function () {
   closePopupSmoothly(openPopup);
+  removePopupKey(openPopup);
   setTimeout(() => {
     inputName.value = titleProfile.textContent;
     inputText.value = subtitleProfile.textContent;
   }, 950);
 });
 
-form.addEventListener('submit', function formSubmitHandler(event) {
+formProfile.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
   if (inputName.value === '') {
     titleProfile.textContent = 'Жак-Ив Кусто';
@@ -171,8 +213,9 @@ form.addEventListener('submit', function formSubmitHandler(event) {
   } else {
     subtitleProfile.textContent = inputText.value;
   }
-  
+
   closePopupSmoothly(openPopup);
+  removePopupKey(openPopup);
   setTimeout(() => {
     closePopup(openPopup);
   }, 950);
@@ -182,20 +225,26 @@ initialCards.forEach(function (item) {
   renderCard(createCard(item.name, item.link));
 });
 
-openAddBtn.addEventListener('click', function () {
-  openPopUp(openAddMenu);
-  openPopupSmoothly(openAddMenu);
+profileAddBtn.addEventListener('click', function () {
+  openPopUp(popupAddCard);
+  openPopupSmoothly(popupAddCard);
+  addPopupKey(popupAddCard);
+  const formSubmitButton = formAddCard.querySelector('.pop-up__button');
+  formSubmitButton.setAttribute('disabled', 'disabled');
+  formSubmitButton.classList.add('pop-up__button_disabled');
 });
 
-closeAddBtn.addEventListener('click', function () {
-  closePopupSmoothly(openAddMenu);
+popupCloseCardBtn.addEventListener('click', function () {
+  closePopupSmoothly(popupAddCard);
+  removePopupKey(popupAddCard);
 });
 
 cardsFullCloseBtn.addEventListener('click', function () {
-  closePopupSmoothly(fullImg);
+  closePopupSmoothly(popupCards);
+  removePopupKey(popupCards);
 });
 
-formAdd.addEventListener('submit', function formSubmitHandler(event) {
+formAddCard.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
   renderCard(createCard(inputTitle.value, inputLink.value));
   if (inputTitle.value !== '') {
@@ -206,17 +255,11 @@ formAdd.addEventListener('submit', function formSubmitHandler(event) {
     inputLink.value = '';
   }
   
-  closePopupSmoothly(openAddMenu);
+  closePopupSmoothly(popupAddCard);
+  removePopupKey(popupAddCard);
   setTimeout(() => {
-    closePopup(openAddMenu);
+    closePopup(popupAddCard);
   }, 950);
 });
 
-enableValidation({
-  formSelector: '.pop-up__form',
-  inputSelector: '.pop-up__input',
-  submitButtonSelector: '.pop-up__button',
-  inactiveButtonClass: 'pop-up__button_disabled',
-  errorClass: 'pop-up__span-error',
-  inputErrorClass: 'pop-up__input_type_error',
-}); 
+closePopups();

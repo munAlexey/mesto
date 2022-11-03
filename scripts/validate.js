@@ -1,6 +1,7 @@
 const showInputError = (input, formError, errorMessage, config) => {
-  if(errorMessage.length > 55) {
-    input.style['margin-bottom'] = '45px';
+  const INPUT_WIDTH = 55;
+  if(errorMessage.length > INPUT_WIDTH) {
+    input.classList.add('pop-up__input-chanched');
   }
   input.classList.add(config.inputErrorClass);
   formError.classList.add(config.errorClass);
@@ -8,7 +9,7 @@ const showInputError = (input, formError, errorMessage, config) => {
 }
 
 const hideInputError = (input, formError, config) => {
-  input.style['margin-bottom'] = '30px';
+  input.classList.remove('pop-up__input-chanched');
   input.classList.remove(config.inputErrorClass);
   formError.classList.remove(config.errorClass);
   formError.textContent = '';
@@ -51,37 +52,7 @@ const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
   forms.forEach(form => {
     setEventListeners(form, config);
-    closePopups();
   })
-}
-
-const closePopupKey = (formElement) => {
-  const body = document.querySelector('body');
-  body.addEventListener('keydown', (evt) => {
-    const key = evt.key;
-    if (key === 'Escape') {
-      clickClose(formElement);
-      closePopupSmoothly(formElement);
-    };
-  });
-}
-
-const closePopupOutside = (formElement) => {
-  formElement.addEventListener('click', (evt) => {
-    const target = evt.target;
-    if (target === formElement) {
-      clickClose(formElement);
-      closePopupSmoothly(formElement);
-    };
-  });
-}
-
-const closePopups = () => {
-  const popups = Array.from(document.querySelectorAll('.pop-up'));
-  popups.forEach(formElement => {
-    closePopupOutside(formElement);
-    closePopupKey(formElement);
-  });
 }
 
 const enableButton = (formSubmitButton, config) => {
