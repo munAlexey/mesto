@@ -25,8 +25,8 @@ const formAddCard = document.forms.formAdd;
 
 const popupCards = document.querySelector('.pop-up_cards');
 const cardImg = cardsList.querySelector('.card__img');
-const cardsFullImg = popupCards.querySelector('.card__full-img');
-const cardsFullTitle = popupCards.querySelector('.card__full-title');
+const cardsFullImg = popupCards.querySelector('.cards__full-img');
+const cardsFullTitle = popupCards.querySelector('.cards__full-title');
 const cardsFullCloseBtn = popupCards.querySelector('.pop-up__close-btn'); 
 
 // Шесть карточек «из коробки»

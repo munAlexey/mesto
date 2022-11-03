@@ -1,4 +1,4 @@
-.card__full-close {
+.cards__full-close {
   position: absolute;
   cursor: pointer;
   border: none;
@@ -8,12 +8,12 @@
   padding: 0;
 }
 
-.card__full-close:hover {
+.cards__full-close:hover {
   opacity: .6;
 }
 
 @media screen and (min-width: 768px) {
-  .card__full-close {
+  .cards__full-close {
     top: -52px;
     right: -52px;
   }

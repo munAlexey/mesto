@@ -21,11 +21,11 @@
 
 /* full img */
 
-@import url('../blocks/card/__full-block/card__full-block.css');
-@import url('../blocks/card/__full-close/card__full-close.css');
-@import url('../blocks/card/__full-close-btn/card__full-close-btn.css');
-@import url('../blocks/card/__full-img/card__full-img.css');
-@import url('../blocks/card/__full-title/card__full-title.css');
+@import url('../blocks/cards/__full-block/cards__full-block.css');
+@import url('../blocks/cards/__full-close-btn/cards__full-close-btn.css');
+@import url('../blocks/cards/__full-close/cards__full-close.css');
+@import url('../blocks/cards/__full-img/cards__full-img.css');
+@import url('../blocks/cards/__full-title/cards__full-title.css');
 
 /* section profile */
 
