@@ -1,5 +1,6 @@
+const INPUT_WIDTH = 55;
+
 const showInputError = (input, formError, errorMessage, config) => {
-  const INPUT_WIDTH = 55;
   if(errorMessage.length > INPUT_WIDTH) {
     input.classList.add('pop-up__input-chanched');
   }
