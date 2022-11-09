@@ -30,7 +30,7 @@ const setEventListeners = (form, config) => {
   inputList.forEach(input => {
     input.addEventListener('input', () => {
       isValid(input, form, config);
-      toggleButtonSubmit(inputList, formSubmitButton, config);
+      toggleButtonSubmit(inputList, formSubmitButton, config); 
     });
   });
 }

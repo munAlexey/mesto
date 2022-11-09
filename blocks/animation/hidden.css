@@ -10,10 +10,11 @@
 
 @keyframes visible {
   from {
-    opacity: 1;
+    visibility: visible;
   }
 
   to {
+    visibility: hidden;
     opacity: 0;
   }
 }

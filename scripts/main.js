@@ -69,9 +69,7 @@ const initialCards = [
 ]; 
 
 const clickClose = (closePopupClass) => {
-  setTimeout(() => {
-    closePopup(closePopupClass);
-  }, 950);
+  closePopup(closePopupClass);
 };
 
 const closePopupButton = Array.from(document.querySelectorAll('.pop-up__close-btn'));
@@ -192,10 +190,8 @@ inputText.value = subtitleProfile.textContent;
 closeProfileButton.addEventListener('click', function () {
   closePopupSmoothly(popupProfile);
   removePopupKey();
-  setTimeout(() => {
-    inputName.value = titleProfile.textContent;
-    inputText.value = subtitleProfile.textContent;
-  }, 950);
+  inputName.value = titleProfile.textContent;
+  inputText.value = subtitleProfile.textContent;
 });
 
 formProfile.addEventListener('submit', function createFormProfile(event) {
@@ -204,9 +200,7 @@ formProfile.addEventListener('submit', function createFormProfile(event) {
   subtitleProfile.textContent = inputText.value;
 
   closePopupSmoothly(popupProfile);
-  setTimeout(() => {
-    closePopup(popupProfile);
-  }, 950);
+  closePopup(popupProfile);
 });
 
 initialCards.forEach(function (item) {
@@ -214,13 +208,9 @@ initialCards.forEach(function (item) {
 });
 
 profileAddBtn.addEventListener('click', function () {
-  const inputList = Array.from(formAddCard.querySelectorAll(arrayClasses.inputSelector));
   openPopUp(popupAddCard);
   openPopupSmoothly(popupAddCard);
-  if (hasInvalidInput(inputList)) {
-  setEventListeners(formAddCard, arrayClasses);
   enableButton(formSubmitButton, arrayClasses);
-  }
 });
 
 popupCloseCardBtn.addEventListener('click', function () {
@@ -240,9 +230,7 @@ formAddCard.addEventListener('submit', function formSubmitHandler(event) {
   inputLink.value = '';
   
   closePopupSmoothly(popupAddCard);
-  setTimeout(() => {
-    closePopup(popupAddCard);
-  }, 950);
+  closePopup(popupAddCard);
 });
 
 closePopups();
