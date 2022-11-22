@@ -14,6 +14,9 @@ const closeProfileButton = document.querySelector('.pop-up__close-btn');
 
 const cardsList = document.querySelector('.cards__list');
 
+const inputTitle = document.querySelector('#pop-up__title');
+const inputLink = document.querySelector('#pop-up__link');
+
 // Форма добавления карточки
 
 const profileAddBtn = document.querySelector('.profile__add-button');
@@ -160,12 +163,12 @@ profileAddBtn.addEventListener('click', function () {
   openPopUp(popupAddCard);
   formSubmitButton.setAttribute('disabled', 'disabled');
   formSubmitButton.classList.add(arrayClasses.inactiveButtonClass);
+  inputTitle.value = '';
+  inputLink.value = '';
 });
 
 formAddCard.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
-  const inputTitle = document.querySelector('#pop-up__title');
-  const inputLink = document.querySelector('#pop-up__link');
   const inputObj = {
     name: inputTitle.value,
     link: inputLink.value
