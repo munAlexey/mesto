@@ -1,3 +1,7 @@
+
+import Card from '../scripts/card.js';
+import FormValidator from './validate.js'
+
 const popups = Array.from(document.querySelectorAll('.pop-up'));
 const buttonEditProfile = document.querySelector('.profile__edit-btn');
 const formProfile = document.forms.formProfile;
@@ -8,27 +12,14 @@ const subtitleProfile = document.querySelector('.profile__subtitle');
 const popupProfile = document.querySelector('.pop-up_profile');
 const closeProfileButton = document.querySelector('.pop-up__close-btn');
 
-const cardsTemplate = document.querySelector('#item').content;
 const cardsList = document.querySelector('.cards__list');
-
-const inputTitle = document.querySelector('#pop-up__title');
-const inputLink = document.querySelector('#pop-up__link');
 
 // Форма добавления карточки
 
 const profileAddBtn = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.pop-up_add');
-const popupCloseCardBtn = popupAddCard.querySelector('.pop-up__close-btn');
 const formAddCard = document.forms.formAdd;
 const formSubmitButton = formAddCard.querySelector('.pop-up__button');
-
-// Открытие попапа с картинкой
-
-const popupCards = document.querySelector('.pop-up_cards');
-const cardImg = cardsList.querySelector('.card__img');
-const cardsFullImg = popupCards.querySelector('.pop-up__card-full-img');
-const cardsFullTitle = popupCards.querySelector('.pop-up__card-full-title');
-const cardsFullCloseBtn = popupCards.querySelector('.pop-up__close-btn'); 
 
 const arrayClasses = {
   formSelector: '.pop-up__form',
@@ -71,8 +62,7 @@ const initialCards = [
 const closePopupButton = Array.from(document.querySelectorAll('.pop-up__close-btn'));
 closePopupButton.forEach((element) => {
   element.addEventListener('click', (evt) => {
-    target = evt.target;
-    closePopup(target.closest('.pop-up'));
+    closePopup(evt.target.closest('.pop-up'));
   });
 });
 
@@ -86,6 +76,12 @@ const closePopupSmoothly = (closePopupBlock) => {
   closePopupBlock.classList.remove('action_open');
 };
 
+const createClass = (obj) => {
+  const card = new Card(obj, '#item');
+  const cardElement = card.generateCard();
+  cardsList.prepend(cardElement);
+}
+
 const openPopUp = (popupClass) => {
   popupClass.classList.add('pop-up_opened');
   openPopupSmoothly(popupClass);
@@ -96,46 +92,6 @@ const closePopup = (popupClass) => {
   popupClass.classList.remove('pop-up_opened');
   closePopupSmoothly(popupClass);
   removePopupKey();
-};
-
-const createCard = (title, link) => {
-  const cardsItem = cardsTemplate.querySelector('.card').cloneNode(true); 
-  const cardsImg = cardsItem.querySelector('.card__img');
-  const likeBtn = cardsItem.querySelector('.card__like-btn');
-  const deletBtn = cardsItem.querySelector('.card__delete');
-  const cardsTitle = cardsItem.querySelector('.card__title');
-
-  cardsTitle.textContent = title;
-  cardsImg.src = link;
-  cardsImg.alt = title;
-
-  // Лайк карточки
-
-  likeBtn.addEventListener('click', () => {
-    cardsItem.querySelector('.card__like-btn').classList.toggle('card__like-btn_state_active');
-  });
-
-  // Удаление карточки
-
-  deletBtn.addEventListener('click', () => {
-    deletBtn.closest('.card').remove();
-  });
-  
-  // Открытие попапа с картинкой
-
-  cardsImg.addEventListener('click', function () {
-    openPopUp(popupCards);
-
-    cardsFullImg.src = link;
-    cardsFullImg.alt = title;
-    cardsFullTitle.textContent = title;
-  });
-
-  return cardsItem;
-};
-
-const renderCard = (item) => {
-  cardsList.prepend(item);
 };
 
 const handleEscClose = (evt) => {
@@ -190,17 +146,31 @@ formProfile.addEventListener('submit', function createFormProfile(event) {
 });
 
 initialCards.forEach(function (item) {
-  renderCard(createCard(item.name, item.link));
+  createClass(item);
 });
+    
+const formValidatorCard = new FormValidator(arrayClasses, '.pop-up__form-add');
+
+const formValidatorProfile = new FormValidator(arrayClasses, '.pop-up__form-profile');
+
+formValidatorCard._setEventListeners();
+formValidatorProfile._setEventListeners();
 
 profileAddBtn.addEventListener('click', function () {
   openPopUp(popupAddCard);
-  enableButton(formSubmitButton, arrayClasses);
+  formSubmitButton.setAttribute('disabled', 'disabled');
+  formSubmitButton.classList.add(arrayClasses.inactiveButtonClass);
 });
 
 formAddCard.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
-  renderCard(createCard(inputTitle.value, inputLink.value));
+  const inputTitle = document.querySelector('#pop-up__title');
+  const inputLink = document.querySelector('#pop-up__link');
+  const inputObj = {
+    name: inputTitle.value,
+    link: inputLink.value
+  };
+  createClass(inputObj);
   inputTitle.value = '';
   inputLink.value = '';
   
