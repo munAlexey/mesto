@@ -136,8 +136,7 @@
             name="link" 
             placeholder="Ссылка на картинку" 
             id="pop-up__link" 
-            required 
-            pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?">
+            required>
             <span class="pop-up__span-error pop-up__link-error"></span>
           </label>
           <button type="submit" class="pop-up__button pop-up__add-btn" disabled>Создать</button>
@@ -164,11 +163,6 @@
       </div>
     </li>
   </template>
-  <template id="full-img">
-    
-  </template>
   <script type="module" src="./scripts/index.js"></script>
-  <script type="module" src="./scripts/card.js"></script>
-  <script type="module" src="./scripts/validate.js"></script>
 </body>
 </html>

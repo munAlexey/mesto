@@ -1,31 +1,27 @@
 export default class FormValidator {
-  inputList;
-  form;
-  formSubmitButton;
-  input;
-  formError;
-
-  constructor(config, formClass) {
-    this.config = config;
-    this.formClass = formClass;
-    this.form = document.querySelector(this.formClass);
-    this.inputList = Array.from(this.form.querySelectorAll(this.config.inputSelector));
-    this.formSubmitButton = this.form.querySelector(this.config.submitButtonSelector);
-    this.INPUT_WIDTH = 55;
+  constructor(config, form) {
+    this._config = config;
+    this._form = form;
+    this._inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
+    this._formSubmitButton = this._form.querySelector(this._config.submitButtonSelector);
   } 
 
+  enableValidation() {
+    this._setEventListeners();
+  }
+
   _setEventListeners() {
-    this.inputList.forEach(input => {
+    this._inputList.forEach(input => {
       input.addEventListener('input', () => {
-        this._isValid(input);
+        this._toggleInputErrorState(input);
         this._toggleButtonSubmit(); 
       });
     });
   }
 
-  _isValid(input) {
-  this.formError = this.form.querySelector(`.${input.id}-error`);
-  if (!input.validity.valid) {
+  _toggleInputErrorState(input) {
+    this.formError = this._form.querySelector(`.${input.id}-error`);
+    if (!input.validity.valid) {
       this._showInputError(input, input.validationMessage);
     } else {
       this._hideInputError(input);
@@ -33,13 +29,13 @@ export default class FormValidator {
   }
 
   _hasInvalidInput(inputList) {
-  return inputList.some((inputElement) => {
+    return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
-  })
-}; 
+    })
+  }
 
   _toggleButtonSubmit() {
-    if (this._hasInvalidInput(this.inputList)) {
+    if (this._hasInvalidInput(this._inputList)) {
       this._enableButton();
     } else {
       this._disabelButton();
@@ -47,28 +43,25 @@ export default class FormValidator {
   }
   
   _enableButton() {
-    this.formSubmitButton.setAttribute('disabled', 'disabled');
-    this.formSubmitButton.classList.add(this.config.inactiveButtonClass);
+    this._formSubmitButton.setAttribute('disabled', 'disabled');
+    this._formSubmitButton.classList.add(this._config.inactiveButtonClass);
   }
 
   _disabelButton = () => {
-    this.formSubmitButton.removeAttribute('disabled');
-    this.formSubmitButton.classList.remove(this.config.inactiveButtonClass);
+    this._formSubmitButton.removeAttribute('disabled');
+    this._formSubmitButton.classList.remove(this._config.inactiveButtonClass);
   }
 
   _showInputError(input, errorMessage) {
-  if(errorMessage.length > this.INPUT_WIDTH) {
-    input.classList.add('pop-up__input-chanched');
+    input.classList.add(this._config.inputErrorClass);
+    this.formError.classList.add(this._config.errorClass);
+    this.formError.textContent = errorMessage;
   }
-  input.classList.add(this.config.inputErrorClass);
-  this.formError.classList.add(this.config.errorClass);
-  this.formError.textContent = errorMessage;
-}
 
   _hideInputError = (input) => {
     input.classList.remove('pop-up__input-chanched');
-    input.classList.remove(this.config.inputErrorClass);
-    this.formError.classList.remove(this.config.errorClass);
+    input.classList.remove(this._config.inputErrorClass);
+    this.formError.classList.remove(this._config.errorClass);
     this.formError.textContent = '';
   }
 }

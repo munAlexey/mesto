@@ -3,6 +3,7 @@ import Card from '../scripts/card.js';
 import FormValidator from './validate.js'
 
 const popups = Array.from(document.querySelectorAll('.pop-up'));
+const popupCards = document.querySelector('.pop-up_cards');
 const buttonEditProfile = document.querySelector('.profile__edit-btn');
 const formProfile = document.forms.formProfile;
 const inputName = formProfile.querySelector('#pop-up__name');
@@ -12,10 +13,14 @@ const subtitleProfile = document.querySelector('.profile__subtitle');
 const popupProfile = document.querySelector('.pop-up_profile');
 const closeProfileButton = document.querySelector('.pop-up__close-btn');
 
+
 const cardsList = document.querySelector('.cards__list');
 
 const inputTitle = document.querySelector('#pop-up__title');
 const inputLink = document.querySelector('#pop-up__link');
+
+const cardsFullImg = document.querySelector('.pop-up__card-full-img');
+const cardsFullTitle = document.querySelector('.pop-up__card-full-title');
 
 // Форма добавления карточки
 
@@ -24,7 +29,7 @@ const popupAddCard = document.querySelector('.pop-up_add');
 const formAddCard = document.forms.formAdd;
 const formSubmitButton = formAddCard.querySelector('.pop-up__button');
 
-const arrayClasses = {
+const arrayConfig = {
   formSelector: '.pop-up__form',
   inputSelector: '.pop-up__input',
   submitButtonSelector: '.pop-up__button',
@@ -79,8 +84,13 @@ const closePopupSmoothly = (closePopupBlock) => {
   closePopupBlock.classList.remove('action_open');
 };
 
-const createClass = (obj) => {
-  const card = new Card(obj, '#item');
+const createCard = (objCard) => {
+  const card = new Card(objCard, '#item', (data) => {
+    openPopUp(popupCards);
+    cardsFullImg.src = data.link;
+    cardsFullImg.alt = data.name;
+    cardsFullTitle.textContent = data.name;
+  });
   const cardElement = card.generateCard();
   cardsList.prepend(cardElement);
 }
@@ -113,29 +123,23 @@ const removePopupKey = () => {
   document.removeEventListener('keydown', handleEscClose);
 }
 
-const closePopupOutside = (formElement) => {
-  formElement.addEventListener('click', (evt) => {
+const closePopupOutside = (popupElement) => {
+  popupElement.addEventListener('click', (evt) => {
     const target = evt.target;
-    if (target === formElement) {
-      closePopup(formElement);
+    if (target === popupElement) {
+      closePopup(popupElement);
     };
   });
 }
 
-const closePopups = () => {
-  popups.forEach(formElement => {
-    closePopupOutside(formElement);
+const initClosePopupByClickOutside= () => {
+  popups.forEach(popupElement => {
+    closePopupOutside(popupElement);
   });
 };
 
 buttonEditProfile.addEventListener('click', function () {
   openPopUp(popupProfile);
-});
-
-inputName.value = titleProfile.textContent;
-inputText.value = subtitleProfile.textContent;
-
-closeProfileButton.addEventListener('click', function () {
   inputName.value = titleProfile.textContent;
   inputText.value = subtitleProfile.textContent;
 });
@@ -149,35 +153,33 @@ formProfile.addEventListener('submit', function createFormProfile(event) {
 });
 
 initialCards.forEach(function (item) {
-  createClass(item);
+  createCard(item);
 });
     
-const formValidatorCard = new FormValidator(arrayClasses, '.pop-up__form-add');
+const formValidatorCard = new FormValidator(arrayConfig, formAddCard);
 
-const formValidatorProfile = new FormValidator(arrayClasses, '.pop-up__form-profile');
+const formValidatorProfile = new FormValidator(arrayConfig, formProfile);
 
-formValidatorCard._setEventListeners();
-formValidatorProfile._setEventListeners();
+formValidatorCard.enableValidation();
+formValidatorProfile.enableValidation();
 
 profileAddBtn.addEventListener('click', function () {
   openPopUp(popupAddCard);
   formSubmitButton.setAttribute('disabled', 'disabled');
-  formSubmitButton.classList.add(arrayClasses.inactiveButtonClass);
+  formSubmitButton.classList.add(arrayConfig.inactiveButtonClass);
   inputTitle.value = '';
   inputLink.value = '';
 });
 
 formAddCard.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
-  const inputObj = {
+  const inputobjCard = {
     name: inputTitle.value,
     link: inputLink.value
   };
-  createClass(inputObj);
-  inputTitle.value = '';
-  inputLink.value = '';
+  createCard(inputobjCard);
   
   closePopup(popupAddCard);
 });
 
-closePopups();
+initClosePopupByClickOutside();
