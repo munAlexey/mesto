@@ -29,7 +29,7 @@ const popupAddCard = document.querySelector('.pop-up_add');
 const formAddCard = document.forms.formAdd;
 const formSubmitButton = formAddCard.querySelector('.pop-up__button');
 
-const arrayConfig = {
+const arrayConfigValidation = {
   formSelector: '.pop-up__form',
   inputSelector: '.pop-up__input',
   submitButtonSelector: '.pop-up__button',
@@ -156,9 +156,9 @@ initialCards.forEach(function (item) {
   createCard(item);
 });
     
-const formValidatorCard = new FormValidator(arrayConfig, formAddCard);
+const formValidatorCard = new FormValidator(arrayConfigValidation, formAddCard);
 
-const formValidatorProfile = new FormValidator(arrayConfig, formProfile);
+const formValidatorProfile = new FormValidator(arrayConfigValidation, formProfile);
 
 formValidatorCard.enableValidation();
 formValidatorProfile.enableValidation();
@@ -166,18 +166,18 @@ formValidatorProfile.enableValidation();
 profileAddBtn.addEventListener('click', function () {
   openPopUp(popupAddCard);
   formSubmitButton.setAttribute('disabled', 'disabled');
-  formSubmitButton.classList.add(arrayConfig.inactiveButtonClass);
+  formSubmitButton.classList.add(arrayConfigValidation.inactiveButtonClass);
   inputTitle.value = '';
   inputLink.value = '';
 });
 
 formAddCard.addEventListener('submit', function formSubmitHandler(event) {
   event.preventDefault();
-  const inputobjCard = {
+  const inputObjCard = {
     name: inputTitle.value,
     link: inputLink.value
   };
-  createCard(inputobjCard);
+  createCard(inputObjCard);
   
   closePopup(popupAddCard);
 });

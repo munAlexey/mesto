@@ -21,7 +21,6 @@ export default class Card {
     this._cardsImg = this._element.querySelector('.card__img');
     this._cardsTitle = this._element.querySelector('.card__title');
     this._cardsFullImg = document.querySelector('.pop-up__card-full-img');
-    this._deleteBtn = this._element.querySelector('.card__delete');
     this._cardsTitle.textContent = this._title;
     this._cardLike = this._element.querySelector('.card__like-btn');
     this._cardsImg.src = this._link;
@@ -60,7 +59,7 @@ export default class Card {
   // Удаление карточки
 
   _handleDeleteBtn() {
-    this._deleteBtn.closest('.card').remove();
+    this._cardsImg.closest('.card').remove();
   }
   
   // Открытие попапа с картинкой
