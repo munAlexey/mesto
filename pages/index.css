@@ -49,6 +49,7 @@
 @import url('../blocks/card/__text-block/card__text-block.css');
 @import url('../blocks/card/__delete/card__delete.css');
 @import url('../blocks/card/__delete-img/card__delete-img.css');
+@import url('../blocks/card/__delete-img/_error/card__delete-img_error.css');
 
 /* footer */
 
