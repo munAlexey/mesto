@@ -29,7 +29,7 @@ const popupAddCard = document.querySelector('.pop-up_add');
 const formAddCard = document.forms.formAdd;
 const formSubmitButton = formAddCard.querySelector('.pop-up__button');
 
-const arrayConfigValidation = {
+const configValidation = {
   formSelector: '.pop-up__form',
   inputSelector: '.pop-up__input',
   submitButtonSelector: '.pop-up__button',
@@ -156,9 +156,9 @@ initialCards.forEach(function (item) {
   createCard(item);
 });
     
-const formValidatorCard = new FormValidator(arrayConfigValidation, formAddCard);
+const formValidatorCard = new FormValidator(configValidation, formAddCard);
 
-const formValidatorProfile = new FormValidator(arrayConfigValidation, formProfile);
+const formValidatorProfile = new FormValidator(configValidation, formProfile);
 
 formValidatorCard.enableValidation();
 formValidatorProfile.enableValidation();
@@ -166,7 +166,7 @@ formValidatorProfile.enableValidation();
 profileAddBtn.addEventListener('click', function () {
   openPopUp(popupAddCard);
   formSubmitButton.setAttribute('disabled', 'disabled');
-  formSubmitButton.classList.add(arrayConfigValidation.inactiveButtonClass);
+  formValidatorProfile.disabelButton();
   inputTitle.value = '';
   inputLink.value = '';
 });

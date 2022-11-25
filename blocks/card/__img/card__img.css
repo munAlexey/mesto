@@ -6,4 +6,6 @@
   height: 280px;
   object-fit: cover;
   cursor: pointer;
+  background-color: #000000;
+  color: #ffffff;
 }

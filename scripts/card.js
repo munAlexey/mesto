@@ -1,8 +1,6 @@
 export default class Card {
   constructor(data, templateSelector, handleOpenPopup) {
-    this.data = data;
-    this._title = data.name;
-    this._link = data.link;
+    this._data = data;
     this._templateSelector = templateSelector;
     this._handleOpenPopup = handleOpenPopup;
   }
@@ -21,10 +19,10 @@ export default class Card {
     this._cardsImg = this._element.querySelector('.card__img');
     this._cardsTitle = this._element.querySelector('.card__title');
     this._cardsFullImg = document.querySelector('.pop-up__card-full-img');
-    this._cardsTitle.textContent = this._title;
+    this._cardsTitle.textContent = this._data.name;
     this._cardLike = this._element.querySelector('.card__like-btn');
-    this._cardsImg.src = this._link;
-    this._cardsImg.alt = this._title;
+    this._cardsImg.src = this._data.link;
+    this._cardsImg.alt = this._data.name;
 
     this._setEventListener();
     
@@ -65,6 +63,6 @@ export default class Card {
   // Открытие попапа с картинкой
 
   _openCardFullImg() {
-    this._handleOpenPopup(this.data);
+    this._handleOpenPopup(this._data);
   }
 }
