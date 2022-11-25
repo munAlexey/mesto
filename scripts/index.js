@@ -166,7 +166,7 @@ formValidatorProfile.enableValidation();
 profileAddBtn.addEventListener('click', function () {
   openPopUp(popupAddCard);
   formSubmitButton.setAttribute('disabled', 'disabled');
-  formValidatorProfile.disabelButton();
+  formValidatorCard.disableButton();
   inputTitle.value = '';
   inputLink.value = '';
 });
