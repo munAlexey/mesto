@@ -182,4 +182,4 @@ formAddCard.addEventListener('submit', function formSubmitHandler(event) {
   closePopup(popupAddCard);
 });
 
-initClosePopupByClickOutside();
+initClosePopupByClickOutside(); 
