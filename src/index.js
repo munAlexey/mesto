@@ -1,14 +1,15 @@
-import Card from '../components/card.js';
-import FormValidator from '../components/validate.js'
-import Section from '../components/Section.js';
-import Popup from '../components/popup.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import PopupWithImage from '../components/PopupWithImage.js';
+import Card from './components/card.js';
+import FormValidator from './components/validate.js'
+import Section from './components/Section.js';
+import Popup from './components/popup.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import '../pages/index.css';
 import { buttonEditProfile, formProfile, inputName, inputText,
   popupProfile, popupFullCards,
   cardsList, inputTitle, inputLink, profileAddBtn, popupAddCard,
-  formSubmitButton, configValidation, initialCards, formAddCard } from '../utils/constants.js';
-import UserInfo from '../components/UserInfo.js';
+  formSubmitButton, configValidation, initialCards, formAddCard } from './utils/constants.js';
+import UserInfo from './components/UserInfo.js';
 
 const popupEditProfile = new Popup(popupProfile);
 const popupAdd = new Popup(popupAddCard);

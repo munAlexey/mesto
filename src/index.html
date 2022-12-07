@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body>
   <div class="page">
     <header class="header">
       <div class="header__block">
-        <img class="logo" src="./img/logo.svg" alt="логотип">
+        <img class="logo" src="<%=require('../img/logo.svg')%>" alt="логотип">
       </div>
     </header>
 
@@ -19,19 +18,19 @@
       <section class="profile">
         <div class="profile__block">
           <div class="profile__left-side">
-            <img class="profile__photo" src="./img/image.jpg" alt="Жак-Ив Кусто">
+            <img class="profile__photo" src="<%=require('../img/image.jpg')%>" alt="Жак-Ив Кусто">
             <div class="profile__text-block">
             <div class="profile__text-container">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
               <button type="button" class="profile__edit-btn">
-                <img class="profile__icon" src="./img/edit-btn.svg" alt="ручка">
+                <img class="profile__icon" src="<%=require('../img/edit-btn.svg')%>" alt="ручка">
               </button>
             </div>
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
           </div>
             <button type="button" class="button profile__add-button">
-              <img class="button__image" src="./img/add.svg" alt="добавить">
+              <img class="button__image" src="<%=require('../img/add.svg')%>" alt="добавить">
             </button>
         </div>
       </section>
@@ -52,9 +51,9 @@
         <button type="button" class="pop-up__close-btn">
           <picture>
             <source 
-              srcset="./img/768/close-btn.svg"
+              srcset="<%=require('../img/768/close-btn.svg')%>"
               media="(min-width: 768px)">
-            <img src="./img/close-btn.svg" alt="закрыть">
+            <img src="<%=require('../img/close-btn.svg')%>" alt="закрыть">
           </picture>
         </button>
         <h2 class="pop-up__title">
@@ -94,9 +93,9 @@
         <button type="button" class="pop-up__close-btn">
           <picture>
             <source 
-              srcset="./img/768/close-btn.svg"
+              srcset="<%=require('../img/768/close-btn.svg')%>"
               media="(min-width: 768px)">
-            <img src="./img/close-btn.svg" class="pop-up__card-close-btn" alt="закрыть">
+            <img src="<%=require('../img/close-btn.svg')%>" class="pop-up__card-close-btn" alt="закрыть">
           </picture>
         </button>
         <img class="pop-up__card-full-img">
@@ -108,9 +107,9 @@
         <button type="button" class="pop-up__close-btn">
           <picture>
             <source 
-              srcset="./img/768/close-btn.svg"
+              srcset="<%=require('../img/768/close-btn.svg')%>"
               media="(min-width: 768px)">
-            <img src="./img/close-btn.svg" alt="закрыть">
+            <img src="<%=require('../img/close-btn.svg')%>" alt="закрыть">
           </picture>
         </button>
         <h2 class="pop-up__title">
@@ -148,7 +147,7 @@
     <li class="card">
       <button class="card__delete">
         <img class="card__delete-img" 
-        src="./img/delete.svg" 
+        src="<%=require('../img/delete.svg')%>"
         alt="удалить"> 
       </button>
       <picture>
@@ -165,6 +164,5 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./src/pages/index.js"></script>
 </body>
 </html>
