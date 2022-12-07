@@ -1,9 +1,8 @@
 export default class Card {
-  constructor(data, templateSelector, handleOpenPopup, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick) {
     this._data = data;
     this._templateSelector = templateSelector;
-    this.handleCardClick = handleCardClick;
-    this._handleOpenPopup = handleOpenPopup;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -64,6 +63,6 @@ export default class Card {
   // Открытие попапа с картинкой
 
   _openCardFullImg() {
-    this._handleOpenPopup(this._data);
+    this._handleCardClick(this._data);
   }
 }
