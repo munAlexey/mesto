@@ -1,4 +1,4 @@
-import { titleProfile, subtitleProfile} from './utils/constants.js';
+import { titleProfile, subtitleProfile} from '../utils/constants.js';
 
 export default class UserInfo {
   constructor({userName, userInfo}) {

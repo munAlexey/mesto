@@ -1,5 +1,5 @@
 import Popup from './popup.js';
-import {configValidation} from './utils/constants.js'
+import {configValidation} from '../utils/constants.js'
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, formSubmitHandler,form) {
