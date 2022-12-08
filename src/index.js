@@ -1,13 +1,13 @@
-import Card from './components/card.js';
-import FormValidator from './components/validate.js'
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js'
 import Section from './components/Section.js';
-import Popup from './components/popup.js';
+import Popup from './components/Popup.js';
 import PopupWithForm from './components/PopupWithForm.js';
 import PopupWithImage from './components/PopupWithImage.js';
 import '../pages/index.css';
 import { buttonEditProfile, formProfile, inputName, inputText,
   popupProfile, popupFullCards,
-  cardsList, inputTitle, inputLink, profileAddBtn, popupAddCard,
+  cardsList, cardsListSelector, inputTitle, inputLink, profileAddBtn, popupAddCard,
   formSubmitButton, configValidation, initialCards, formAddCard } from './utils/constants.js';
 import UserInfo from './components/UserInfo.js';
 
@@ -17,14 +17,18 @@ const popupFullOpen = new PopupWithImage(popupFullCards);
 const formValidatorCard = new FormValidator(configValidation, formAddCard);
 const formValidatorProfile = new FormValidator(configValidation, formProfile);
 
-const defaultCardList = new Section({items: initialCards, renderer: (item) => {
-  const card = new Card(item, '#item', (data) => {
+const initialCard = function (item) {
+  const card = new Card(item, '#item', (item) => {
     popupFullOpen.setEventListeners();
-    popupFullOpen.open(data);
+    popupFullOpen.open(item);
   });
   const cardElement = card.generateCard();
-  defaultCardList.addItem(cardElement);
-}}, '.cards__list');
+  cardsList.prepend(cardElement);
+}
+
+const defaultCardList = new Section({items: initialCards, renderer: (item) => {
+  initialCard(item);
+}}, cardsListSelector);
 
 defaultCardList.renderItems();
 
@@ -40,11 +44,7 @@ const popupProfileEdit = new PopupWithForm(popupProfile, (inputs) => {
 popupProfileEdit.setEventListeners();
 
 const popupWithForm = new PopupWithForm(popupAddCard, (inputs) => {
-  const card = new Card(inputs, '#item', () => {
-    popupFullOpen.open(inputs);
-  });
-  const cardElement = card.generateCard();
-  cardsList.prepend(cardElement);
+  initialCard(inputs);
   popupAdd.close();
 }, formAddCard);
 
