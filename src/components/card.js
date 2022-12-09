@@ -4,6 +4,7 @@ export default class Card {
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }
+  
 
   _getTemplate() {
       const cardElement = document
