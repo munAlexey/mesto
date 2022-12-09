@@ -23,6 +23,8 @@ export const popupAddCard = document.querySelector('.pop-up_add');
 export const formAddCard = document.forms.formAdd;
 export const formSubmitButton = formAddCard.querySelector('.pop-up__button');
 
+export const objUserInfo = {userName: '#pop-up__name', userInfo: '#pop-up__text'};
+
 export const configValidation = {
   formSelector: '.pop-up__form',
   inputSelector: '.pop-up__input',

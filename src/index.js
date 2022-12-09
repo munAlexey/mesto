@@ -7,7 +7,7 @@ import PopupWithImage from './components/PopupWithImage.js';
 import '../pages/index.css';
 import { buttonEditProfile, formProfile, inputName, inputText,
   popupProfile, popupFullCards,
-  cardsList, cardsListSelector, inputTitle, inputLink, profileAddBtn, popupAddCard,
+  cardsList, cardsListSelector, objUserInfo, inputTitle, inputLink, profileAddBtn, popupAddCard,
   formSubmitButton, configValidation, initialCards, formAddCard } from './utils/constants.js';
 import UserInfo from './components/UserInfo.js';
 
@@ -32,10 +32,10 @@ const defaultCardList = new Section({items: initialCards, renderer: (item) => {
 
 defaultCardList.renderItems();
 
-const profileInfo = new UserInfo({userName: '#pop-up__name', userInfo: '#pop-up__text'});
+const profileInfo = new UserInfo(objUserInfo);
 
 const popupProfileEdit = new PopupWithForm(popupProfile, (inputs) => {
-  const profileEdit = new UserInfo({userName: '#pop-up__name', userInfo: '#pop-up__text'});
+  const profileEdit = new UserInfo(objUserInfo);
   profileEdit.setUserInfo();
   popupEditProfile.setEventListeners();
   popupEditProfile.close();
