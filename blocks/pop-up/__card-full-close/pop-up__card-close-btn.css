@@ -1,23 +1,19 @@
-.pop-up__close-btn {
+.pop-up__full-close {
   position: absolute;
-  right: 0;
-  top: -36px;
-  width: 20px;
-  height: 20px;
+  cursor: pointer;
   border: none;
   background-color: transparent;
+  top: -36px;
+  right: 0;
   padding: 0;
-  cursor: pointer;
 }
 
-.pop-up__close-btn:hover {
+.pop-up__full-close:hover {
   opacity: .6;
 }
 
 @media screen and (min-width: 768px) {
-  .pop-up__close-btn {
-    width: 32px;
-    height: 32px;
+  .pop-up__full-close {
     top: -52px;
     right: -52px;
   }

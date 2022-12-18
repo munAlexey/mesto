@@ -1,3 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+
 .page {
   position: relative;
   -webkit-font-smoothing: antialiased;
@@ -7,4 +12,5 @@
   -moz-text-size-adjust: 100%;
   background-color: #000000;
   color: #FFFFFF;
+  min-height: 100%;
 }
