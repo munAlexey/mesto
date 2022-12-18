@@ -153,6 +153,29 @@
             </div>
           </li>
         </ul>
+        <template id="cards">
+          <ul class="cards__list">
+            <li class="cards__item">
+              <button class="cards__delete">
+                <img class="cards__delete-img" src="./img/delete.svg" alt="удалить">
+              </button>
+              <picture>
+                <source 
+                srcset="./img/1280/img-6.jpg"
+                media="(min-width: 1280px)">
+                <source 
+                srcset="./img/768/img-6.jpg"
+                media="(min-width: 768px)">
+                <img class="cards__img" src="./img/320/img-6.jpg" alt="Предприятие">
+              </picture>
+              <div class="cards__text-block">
+                <h3 class="cards__title">Предприятие</h3>
+                <button type="button" class="cards__like-btn">
+                </button>
+              </div>
+            </li>
+          </ul>
+        </template>
       </section>
     </main>
 
