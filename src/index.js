@@ -7,9 +7,22 @@ import PopupWithImage from './components/PopupWithImage.js';
 import '../pages/index.css';
 import { buttonEditProfile, formProfile, inputName, inputText,
   popupProfile, popupFullCards,
-  cardsList, cardsListSelector, objUserInfo, inputTitle, inputLink, profileAddBtn, popupAddCard,
-  formSubmitButton, configValidation, initialCards, formAddCard } from './utils/constants.js';
+  cardsList, cardsListSelector, objUserInfo, iconProfile, titleProfile, subtitleProfile, inputTitle, inputLink, profileAddBtn, popupAddCard,
+  formSubmitButton, configValidation, formAddCard } from './utils/constants.js';
 import UserInfo from './components/UserInfo.js';
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-56/users/me', {
+  headers: {
+      authorization: '9be9cc24-8f1f-4506-ba7e-99001911a764'
+    }
+  })
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result)
+    titleProfile.textContent = result.name;
+    subtitleProfile.textContent = result.about;
+    iconProfile.src = result.avatar;
+  }); 
 
 const popupEditProfile = new Popup(popupProfile);
 const popupAdd = new Popup(popupAddCard);
@@ -26,11 +39,20 @@ const initialCard = function (item) {
   cardsList.prepend(cardElement);
 }
 
-const defaultCardList = new Section({items: initialCards, renderer: (item) => {
-  initialCard(item);
-}}, cardsListSelector);
-
-defaultCardList.renderItems();
+fetch('https://mesto.nomoreparties.co/v1/cohort-56/cards', {
+  headers: {
+    authorization: '9be9cc24-8f1f-4506-ba7e-99001911a764'
+  }
+})
+.then(res => {
+  return res.json();
+})
+.then((result) => {
+  const defaultCardList = new Section({items: result, renderer: (item) => {
+    initialCard(item);
+  }}, cardsListSelector);
+  defaultCardList.renderItems();
+}); 
 
 const profileInfo = new UserInfo(objUserInfo);
 
