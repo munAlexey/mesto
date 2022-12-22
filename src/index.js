@@ -8,21 +8,17 @@ import '../pages/index.css';
 import { buttonEditProfile, formProfile, inputName, inputText,
   popupProfile, popupFullCards,
   cardsList, cardsListSelector, objUserInfo, iconProfile, titleProfile, subtitleProfile, inputTitle, inputLink, profileAddBtn, popupAddCard,
-  formSubmitButton, configValidation, formAddCard } from './utils/constants.js';
+  formSubmitButton, configValidation, apiConfig, cardsCount, formAddCard } from './utils/constants.js';
 import UserInfo from './components/UserInfo.js';
+import {API} from './components/API.js';
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-56/users/me', {
-  headers: {
-      authorization: '9be9cc24-8f1f-4506-ba7e-99001911a764'
-    }
-  })
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result)
-    titleProfile.textContent = result.name;
-    subtitleProfile.textContent = result.about;
-    iconProfile.src = result.avatar;
-  }); 
+const api = new API(apiConfig);
+
+api.getProfileInfo().then((result) => {
+  titleProfile.textContent = result.name;
+  subtitleProfile.textContent = result.about;
+  iconProfile.src = result.avatar;
+});
 
 const popupEditProfile = new Popup(popupProfile);
 const popupAdd = new Popup(popupAddCard);
@@ -39,26 +35,24 @@ const initialCard = function (item) {
   cardsList.prepend(cardElement);
 }
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-56/cards', {
-  headers: {
-    authorization: '9be9cc24-8f1f-4506-ba7e-99001911a764'
-  }
-})
-.then(res => {
-  return res.json();
-})
-.then((result) => {
-  const defaultCardList = new Section({items: result, renderer: (item) => {
+api.getCardsList().then(cards=> {
+  const defaultCardList = new Section({items: cards, renderer: (item) => {
     initialCard(item);
   }}, cardsListSelector);
   defaultCardList.renderItems();
-}); 
+  cards.map((likes) => ({like: likes.likes})).forEach(element => {
+    console.log(element.like.length);
+    console.log(cardsCount)
+  });
+});
 
 const profileInfo = new UserInfo(objUserInfo);
 
 const popupProfileEdit = new PopupWithForm(popupProfile, (inputs) => {
   const profileEdit = new UserInfo(objUserInfo);
   profileEdit.setUserInfo();
+  const profileUserInfo = profileInfo.getUserInfo();
+  api.editProfileInfo(profileUserInfo); 
   popupEditProfile.setEventListeners();
   popupEditProfile.close();
 }, formProfile);
@@ -66,6 +60,7 @@ const popupProfileEdit = new PopupWithForm(popupProfile, (inputs) => {
 popupProfileEdit.setEventListeners();
 
 const popupWithForm = new PopupWithForm(popupAddCard, (inputs) => {
+  api.createCard(inputs);
   initialCard(inputs);
   popupAdd.close();
 }, formAddCard);
@@ -76,10 +71,10 @@ formValidatorCard.enableValidation();
 formValidatorProfile.enableValidation();
 
 buttonEditProfile.addEventListener('click', function () {
+  const profileUserInfo = profileInfo.getUserInfo();
   popupEditProfile.setEventListeners();
   popupEditProfile.open();
 
-  const profileUserInfo = profileInfo.getUserInfo();
   inputName.value = profileUserInfo.name;
   inputText.value = profileUserInfo.info;
 });

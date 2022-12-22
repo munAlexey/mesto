@@ -16,6 +16,7 @@ export const inputTitle = document.querySelector('#pop-up__title');
 export const inputLink = document.querySelector('#pop-up__link');
 export const cardsFullImg = document.querySelector('.pop-up__card-full-img');
 export const cardsFullTitle = document.querySelector('.pop-up__card-full-title'); 
+export const cardsCount = document.querySelector('.card__like-count');
 
  // Форма добавления карточки
 
@@ -34,4 +35,11 @@ export const configValidation = {
   errorClass: 'pop-up__span-error',
   inputErrorClass: 'pop-up__input_type_error',
 };
+
+export const apiConfig = {
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-56',
+  headers: {
+    'Authorization' : '9be9cc24-8f1f-4506-ba7e-99001911a764'
+  }
+}
 
