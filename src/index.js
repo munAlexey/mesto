@@ -8,8 +8,10 @@ import '../pages/index.css';
 import { buttonEditProfile, formProfile, inputName, inputText,
   popupProfile, popupFullCards,
   cardsList, cardsListSelector, objUserInfo, inputTitle, inputLink, profileAddBtn, popupAddCard,
-  formSubmitButton, configValidation, initialCards, formAddCard } from './utils/constants.js';
+  formSubmitButton, configValidation, initialCards, count, formAddCard } from './utils/constants.js';
 import UserInfo from './components/UserInfo.js';
+
+console.log(count)
 
 const popupEditProfile = new Popup(popupProfile);
 const popupAdd = new Popup(popupAddCard);

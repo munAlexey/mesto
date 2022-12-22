@@ -15,6 +15,7 @@ export const inputTitle = document.querySelector('#pop-up__title');
 export const inputLink = document.querySelector('#pop-up__link');
 export const cardsFullImg = document.querySelector('.pop-up__card-full-img');
 export const cardsFullTitle = document.querySelector('.pop-up__card-full-title'); 
+export const count = document.querySelector('.card__count'); 
 
  // Форма добавления карточки
 
