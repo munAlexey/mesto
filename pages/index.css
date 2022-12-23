@@ -43,12 +43,14 @@
 
 @import url('../blocks/card/card.css');
 @import url('../blocks/card/__img/card__img.css');
+@import url('../blocks/card/__like/card__like.css');
 @import url('../blocks/card/__like-btn/card__like-btn.css');
 @import url('../blocks/card/__like-btn/_state/card__like-btn_state_active.css');
 @import url('../blocks/card/__title/card__title.css');
 @import url('../blocks/card/__text-block/card__text-block.css');
 @import url('../blocks/card/__delete/card__delete.css');
 @import url('../blocks/card/__delete-img/card__delete-img.css');
+@import url('../blocks/card/__like-count/card__like-count.css');
 
 /* footer */
 
@@ -58,8 +60,8 @@
 /* pop-up */
 
 @import url('../blocks/pop-up/pop-up.css');
-@import url('../blocks/pop-up/__profile-btn/pop-up__profile-btn.css');
-@import url('../blocks/pop-up/__add-btn/pop-up__add-btn.css');
+@import url('../blocks/pop-up/__button/pop-up__button.css');
+@import url('../blocks/pop-up/__confirm-btn/pop-up__confirm-btn.css');
 @import url('../blocks/pop-up/__button/_disabled/pop-up__button_disabled.css');
 @import url('../blocks/pop-up/__close-btn/pop-up__close-btn.css');
 @import url('../blocks/pop-up/__close-add-btn/pop-up__close-add-btn.css');

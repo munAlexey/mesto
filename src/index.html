@@ -46,6 +46,22 @@
       <p class="footer__copy">&copy; 2020 Mesto Russia</p>
     </footer>
 
+    <div class="pop-up pop-up_delete-card">
+      <div class="pop-up__block">
+        <button type="button" class="pop-up__close-btn">
+          <picture>
+            <source 
+              srcset="<%=require('../img/768/close-btn.svg')%>"
+              media="(min-width: 768px)">
+            <img src="<%=require('../img/close-btn.svg')%>" alt="закрыть">
+          </picture>
+        </button>
+        <h2 class="pop-up__title">
+          Вы уверены?
+        </h2>
+        <button type="button" class="pop-up__button pop-up__confirm-btn">Да</button>
+      </div>
+    </div>
     <div class="pop-up pop-up_profile">
       <div class="pop-up__block">
         <button type="button" class="pop-up__close-btn">
@@ -142,7 +158,7 @@
         </form>
       </div>
     </div>
-  </div>
+
   <template id="item">
     <li class="card">
       <button class="card__delete">
@@ -159,9 +175,11 @@
       </picture>
       <div class="card__text-block">
         <h3 class="card__title"></h3>
-        <button type="button" class="card__like-btn">
-        </button>
-        <span class="card__count"></span>
+        <div class="card__like">
+          <button type="button" class="card__like-btn">
+          </button>
+          <span class="card__like-count">0</span>
+        </div>
       </div>
     </li>
   </template>

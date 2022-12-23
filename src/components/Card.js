@@ -20,10 +20,12 @@ export default class Card {
     this._cardsImg = this._element.querySelector('.card__img');
     this._cardsTitle = this._element.querySelector('.card__title');
     this._cardsFullImg = document.querySelector('.pop-up__card-full-img');
+    this._cardCount = this._element.querySelector('.card__like-count');
     this._cardsTitle.textContent = this._data.name || this._data.title;
     this._cardLike = this._element.querySelector('.card__like-btn');
     this._cardsImg.src = this._data.link;
     this._cardsImg.alt = this._data.name || this._data.title;
+    this._cardCount.textContent = this._data.likes.length;
 
     this._setEventListener();
     
