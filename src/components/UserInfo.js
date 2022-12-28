@@ -9,7 +9,7 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: titleProfile.textContent,
-      info: subtitleProfile.textContent
+      info: subtitleProfile.textContent,
     }
   }
 

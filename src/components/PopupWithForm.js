@@ -4,6 +4,7 @@ import {configValidation} from '../utils/constants.js'
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, formSubmitHandler,form) {
     super(popupSelector);
+    this._formSubmitButton = this._popupSelector.querySelector('.pop-up__button');
     this._form = form;
     this.formSubmitHandler = formSubmitHandler;
     this._inputList = Array.from(this._popupSelector.querySelectorAll(configValidation.inputSelector));
@@ -17,19 +18,27 @@ export default class PopupWithForm extends Popup {
     return inputArr;
   }
 
+  renderLoading(isLoading, text) {
+    if(isLoading) {
+      this._formSubmitButton .textContent = `${this._formSubmitButton .textContent}...`
+    } else {
+      this._formSubmitButton .textContent = text;
+    }
+  }
+
   close() {
     super.close();
     this._form.reset();
   }
 
-  setEventListeners() {
+  setEventListeners(renderLoading) {
     super.setEventListeners();
 
     this._popupSelector.addEventListener('submit', (event) => {
       event.preventDefault();
-      this.formSubmitHandler(this._getInputValues());
+      this.renderLoading(true);
+      this.formSubmitHandler(this._getInputValues(), this);
       this.close();
     });
-    
   }
 }

@@ -1,3 +1,12 @@
+import { formSubmitButton  } from "../utils/constants";
+function renderLoading(isLoading, text) {
+  if(isLoading) {
+    formSubmitButton.textContent = `${formSubmitButton.textContent}...`
+  } else {
+    formSubmitButton.textContent = text;
+  }
+}
+
 export class API {
   constructor(config) {
     this.baseUrl = config.baseUrl;
@@ -9,8 +18,38 @@ export class API {
       method: 'GET',
       'headers': this.headers
     })
-    const data = await response.json();
-    return data;
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      return Promise.reject(`Ошибка: ${response.status}`);
+    }
+  }
+
+  async getCardLike(id) {
+    const response = await fetch(`${this.baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      'headers': this.headers,
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      return Promise.reject(`Ошибка: ${response.status}`);
+    }
+  }
+
+  async deleteLike(id) {
+    const response = await fetch(`${this.baseUrl}/cards/${id}/likes`,{
+      method: 'DELETE',
+      headers: this.headers
+    })
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      return Promise.reject(`Ошибка: ${response.status}`);
+    }
   }
 
   async getProfileInfo() {
@@ -18,36 +57,74 @@ export class API {
       method: 'GET',
       'headers': this.headers
       }) 
-      const data = await response.json();
-      return data
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        return Promise.reject(`Ошибка: ${response.status}`);
+      }
   }
 
-  editProfileInfo(profileUserInfo) {
-    fetch(`${this.baseUrl}/users/me`, {
+  async editProfileInfo(profileUserInfo) {
+    const response = await fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
-      'headers': {
-        'Authorization' : '9be9cc24-8f1f-4506-ba7e-99001911a764',
-        'Content-Type': 'application/json'
-      },
+      'headers': this.headers,
       body: JSON.stringify({
         name: profileUserInfo.name,
         about: profileUserInfo.info
       })
     })
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      return Promise.reject(`Ошибка: ${response.status}`);
+    }
+  }
+
+  async editProfileAvatar(profileUserAva) {
+    const response = await fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      'headers': this.headers,
+      body: JSON.stringify({
+        avatar: profileUserAva.link,
+      })
+    })
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      return Promise.reject(`Ошибка: ${response.status}`);
+    }
   }
 
   async createCard(inputs) {
     const response = await fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
-      'headers': {
-        'Authorization' : '9be9cc24-8f1f-4506-ba7e-99001911a764',
-        'Content-Type': 'application/json'
-      },
+      'headers': this.headers,
       body: JSON.stringify({
         name: inputs.title,
-        link: inputs.link
+        link: inputs.link,
       })
     })
-    return response;
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      return Promise.reject(`Ошибка: ${response.status}`);
+    }
+  }
+
+  async deleteCard(id) {
+    const response = await fetch(`${this.baseUrl}/cards/${id}`,{
+      method: 'DELETE',
+      headers: this.headers
+    })
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      return Promise.reject(`Ошибка: ${response.status}`);
+    }
   }
 }

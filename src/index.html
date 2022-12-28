@@ -18,17 +18,22 @@
       <section class="profile">
         <div class="profile__block">
           <div class="profile__left-side">
-            <img class="profile__photo" src="<%=require('../img/image.jpg')%>" alt="Жак-Ив Кусто">
-            <div class="profile__text-block">
-            <div class="profile__text-container">
-              <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button type="button" class="profile__edit-btn">
-                <img class="profile__icon" src="<%=require('../img/edit-btn.svg')%>" alt="ручка">
+            <div class="profile__block-icon">
+              <img class="profile__photo" alt="Жак-Ив Кусто">
+              <button type="button" class="profile__pen">
+                <img class="profile__pen-img" src="<%=require('../img/edit-btn.svg')%>" alt="ручка">
               </button>
             </div>
+            <div class="profile__text-block">
+              <div class="profile__text-container">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <button type="button" class="profile__edit-btn">
+                  <img class="profile__icon" src="<%=require('../img/edit-btn.svg')%>" alt="ручка">
+                </button>
+              </div>
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
-          </div>
+            </div>
             <button type="button" class="button profile__add-button">
               <img class="button__image" src="<%=require('../img/add.svg')%>" alt="добавить">
             </button>
@@ -155,6 +160,34 @@
             <span class="pop-up__span-error pop-up__link-error"></span>
           </label>
           <button type="submit" class="pop-up__button pop-up__add-btn" disabled>Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="pop-up pop-up_profile-edit">
+      <div class="pop-up__block">
+        <button type="button" class="pop-up__close-btn">
+          <picture>
+            <source 
+              srcset="<%=require('../img/768/close-btn.svg')%>"
+              media="(min-width: 768px)">
+            <img src="<%=require('../img/close-btn.svg')%>" alt="закрыть">
+          </picture>
+        </button>
+        <h2 class="pop-up__title">
+          Обновить аватар
+        </h2>
+        <form class="pop-up__form pop-up__form-add" name="formEditAva" novalidate>
+          <label class="pop-up__form-label">
+            <input 
+            type="url" 
+            class="pop-up__input" 
+            name="link" 
+            placeholder="Ссылка на Аватарку" 
+            id="pop-up__link"  
+            required>
+            <span class="pop-up__span-error pop-up__link-error"></span>
+          </label>
+          <button type="submit" class="pop-up__button pop-up__add-btn" disabled>Сохранить</button>
         </form>
       </div>
     </div>
