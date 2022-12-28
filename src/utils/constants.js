@@ -15,7 +15,7 @@ export const popupFullCards = document.querySelector('.pop-up_cards');
 export const cardsList = document.querySelector('.cards__list');
 export const cardsListSelector = '.cards__list';
 export const inputTitle = document.querySelector('#pop-up__title');
-export const inputLink = document.querySelector('#pop-up__link');
+export const inputLink = document.querySelector('#pop-up__link-ava');
 export const cardsFullImg = document.querySelector('.pop-up__card-full-img');
 export const cardsFullTitle = document.querySelector('.pop-up__card-full-title'); 
 
