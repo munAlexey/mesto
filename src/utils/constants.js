@@ -30,7 +30,7 @@ export const formEditAva = document.forms.formEditAva;
 export const formSubmitButton = formAddCard.querySelector('.pop-up__button');
 
 export const objUserInfo = {userName: '#pop-up__name', userInfo: '#pop-up__text'};
-export const objAva = {userAvatar: '#pop-up__link'}
+export const objAva = {userAvatar: '#pop-up__link-ava'}
 
 export const configValidation = {
   formSelector: '.pop-up__form',
