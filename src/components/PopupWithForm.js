@@ -2,12 +2,12 @@ import Popup from './Popup.js';
 import {configValidation} from '../utils/constants.js'
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, formSubmitHandler,form) {
-    super(popupSelector);
-    this._formSubmitButton = this._popupSelector.querySelector('.pop-up__button');
+  constructor(popupElement, formSubmitHandler,form) {
+    super(popupElement);
+    this._formSubmitButton = this._popupElement.querySelector('.pop-up__button');
     this._form = form;
     this.formSubmitHandler = formSubmitHandler;
-    this._inputList = Array.from(this._popupSelector.querySelectorAll(configValidation.inputSelector));
+    this._inputList = Array.from(this._popupElement.querySelectorAll(configValidation.inputSelector));
   }
 
   _getInputValues() {
@@ -34,7 +34,7 @@ export default class PopupWithForm extends Popup {
   setEventListeners(renderLoading) {
     super.setEventListeners();
 
-    this._popupSelector.addEventListener('submit', (event) => {
+    this._popupElement.addEventListener('submit', (event) => {
       event.preventDefault();
       this.renderLoading(true);
       this.formSubmitHandler(this._getInputValues(), this);
