@@ -42,7 +42,7 @@ export default class Card {
     return this._element; 
   }
 
-  enableValidation() {
+  enableEventListeners() {
     this._setEventListener();
   }
 
@@ -98,7 +98,8 @@ export default class Card {
   // Удаление карточки
 
   handleDeleteBtn() {
-    this._cardsImg.closest('.card').remove();
+    this._element.remove();
+    this._element = null;
   }
   
   // Открытие попапа с картинкой
