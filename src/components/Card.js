@@ -17,8 +17,9 @@ export default class Card {
       return cardElement;
   }
   
-  generateCard() {
+  generateCard(userId) {
     this._element = this._getTemplate(this._cardsImg);
+    this._userId = userId;
     this._deleteElement = this._element.querySelector('.card__delete')
     this._cardsImg = this._element.querySelector('.card__img');
     this._cardsTitle = this._element.querySelector('.card__title');
@@ -30,7 +31,7 @@ export default class Card {
     this._cardsImg.alt = this._data.name || this._data.title;
     this._cardCount.textContent = this._data.likes.length;
     this.isLike();
-    if (this._data.owner._id === window.userInfo._id) {
+    if (this._data.owner._id === this._userId) {
       this._addBusketBtn()
     }
     else {
@@ -42,7 +43,7 @@ export default class Card {
     return this._element; 
   }
 
-  enableValidation() {
+  enableEventListeners() {
     this._setEventListener();
   }
 
@@ -71,7 +72,7 @@ export default class Card {
   // Лайк карточки
 
   toogleLike() {
-    return this._data.likes.some(like => like._id === window.userInfo._id);
+    return this._data.likes.some(like => like._id === this._userId);
   }
 
   addLike() {
@@ -98,7 +99,8 @@ export default class Card {
   // Удаление карточки
 
   handleDeleteBtn() {
-    this._cardsImg.closest('.card').remove();
+    this._element.remove();
+    this._element = null;
   }
   
   // Открытие попапа с картинкой
