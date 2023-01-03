@@ -1,9 +1,10 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleDeleteCard, handleLikeBtn) {
+  constructor(data, templateSelector, handleCardClick, openConfirmPopup, handleLikeBtn, userInfo) {
     this._data = data;
+    this._userInfo = userInfo;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._handleDeleteCard = handleDeleteCard;
+    this.openConfirmPopup = openConfirmPopup;
     this._handleLikeBtn = handleLikeBtn;
   } 
   
@@ -30,7 +31,7 @@ export default class Card {
     this._cardsImg.alt = this._data.name || this._data.title;
     this._cardCount.textContent = this._data.likes.length;
     this.isLike();
-    if (this._data.owner._id === window.userInfo._id) {
+    if (this._data.owner._id === this._userInfo) {
       this._addBusketBtn()
     }
     else {
@@ -52,7 +53,7 @@ export default class Card {
     });
   
     this._deleteElement.addEventListener('click', () => {
-      this._deleteCard();
+      this.openConfirmPopup(this);
     });
     
     this._cardsImg.addEventListener('click', () => {
@@ -71,7 +72,7 @@ export default class Card {
   // Лайк карточки
 
   toogleLike() {
-    return this._data.likes.some(like => like._id === window.userInfo._id);
+    return this._data.likes.some(like => like._id === this._userInfo);
   }
 
   addLike() {
@@ -106,9 +107,5 @@ export default class Card {
 
   _openCardFullImg() {
     this._handleCardClick(this._data);
-  }
-
-  _deleteCard() {
-    this._handleDeleteCard(this);
   }
 }

@@ -7,23 +7,41 @@ import PopupWithImage from './components/PopupWithImage.js';
 import '../pages/index.css';
 import { PopupConfirm } from './components/PopupConfirm.js';
 import { buttonEditProfile, formProfile, inputName, inputText,
-  popupProfile, popupFullCards, formEditAva, profileBtnEditAva, popupEditAvatar, objAva,
-  cardsList, cardsListSelector, objUserInfo, iconProfile, titleProfile, subtitleProfile, inputTitle, inputLink, profileAddBtn, popupAddCard,
-  formSubmitButton, configValidation, apiConfig, popupDeleteCard, formAddCard } from './utils/constants.js';
+  popupProfile, popupFullCards, formEditAva, profileBtnEditAva, popupEditAvatar,
+   cardsListSelector, objUserInfo, iconProfile, titleProfile, subtitleProfile, inputTitle, inputLink, profileAddBtn, 
+  popupAddCard, configValidation, apiConfig, popupDeleteCard, formAddCard } from './utils/constants.js';
 import UserInfo from './components/UserInfo.js';
 import {API} from './components/API.js';
 import UserAvatarInfo from './components/UserAvatarInfo.js';
 
 const api = new API(apiConfig);
+const profileInfo = new UserInfo(objUserInfo); 
 
-api.getProfileInfo().then((result) => {
-  window.userInfo = result;
+
+Promise.all([api.getCardsList(), api.getProfileInfo()])
+.then(([cards, result]) => {
+  let userInfo = result._id;
+  const defaultCardList = new Section((item) => {
+    defaultCardList.addItem(initialCard(item, userInfo))
+  }, cardsListSelector);
+  defaultCardList.renderItems(cards);
   iconProfile.src = result.avatar;
   titleProfile.textContent = result.name;
   subtitleProfile.textContent = result.about;
-}).catch(rej => {
-  console.log(rej)
+
+  const popupCardForm = new PopupWithForm(popupAddCard, (inputs, popup) => {
+    api.createCard(inputs).then((res) => {
+      defaultCardList.addItem(initialCard(res, userInfo));
+      popupAdd.close();
+    }).catch(rej => {
+      console.log(rej)
+    }).finally(() => {
+      popup.renderLoading(false, 'Создать');
+    })
+  }, formAddCard);
+  popupCardForm.setEventListeners();
 });
+
 
 const popupEditProfile = new Popup(popupProfile);
 const popupEditAva = new Popup(popupEditAvatar);
@@ -32,22 +50,25 @@ const popupFullOpen = new PopupWithImage(popupFullCards);
 const formAvatarValidator = new FormValidator(configValidation, formEditAva);
 const formValidatorCard = new FormValidator(configValidation, formAddCard);
 const formValidatorProfile = new FormValidator(configValidation, formProfile);
-const popupConfirmBtn = new PopupConfirm(popupDeleteCard);
+const popupConfirmBtn = new PopupConfirm(popupDeleteCard, (card) => {
+  api.deleteCard(card._data._id)
+  .then(() => {
+    card.handleDeleteBtn();
+    popupConfirmBtn.close();
+  })
+  .catch(rej => {
+    console.log(rej)
+  });
+});
 
-const initialCard = function (item) {
+const initialCard = function (item, userInfo) {
   const card = new Card(item, '#item', (item) => {
     popupFullOpen.setEventListeners();
     popupFullOpen.open(item);
   },
     async (card) => {
-      popupConfirmBtn.setEventListeners(() => {
-        api.deleteCard(card._data._id).catch(rej => {
-          console.log(rej)
-        });
-        card.handleDeleteBtn();
-        popupConfirmBtn.close();
-      });
-      popupConfirmBtn.open();
+      popupConfirmBtn.open(card);
+      popupConfirmBtn.setEventListeners();
     },
     async (isLike, card) => {
       if(!isLike) {
@@ -59,23 +80,14 @@ const initialCard = function (item) {
         api.deleteLike(card._data._id).then(res => {
           card.getNewLikes(res);
           card.removeLike();
-        })
+        }).catch(rej => {
+          console.log(rej)
+        });
       }
-    }
+    }, userInfo
   );
-  const cardElement = card.generateCard();
-  cardsList.prepend(cardElement);
+  return card.generateCard();
 }
-
-const defaultCardList = new Section((item) => {
-  initialCard(item);
-}, cardsListSelector);
-
-api.getCardsList().then(cards=> {
-  defaultCardList.renderItems(cards);
-}).catch(rej => {
-  console.log(rej)
-});
 
 const popupAvatarEdit = new PopupWithForm(popupEditAvatar, (input, popup) => {
   const avatarEdit = new UserAvatarInfo(input);
@@ -91,14 +103,10 @@ const popupAvatarEdit = new PopupWithForm(popupEditAvatar, (input, popup) => {
   popupEditAva.setEventListeners();
 }, formEditAva);
 
-popupAvatarEdit.setEventListeners()
-
- 
-const profileInfo = new UserInfo(objUserInfo); 
+popupAvatarEdit.setEventListeners();
 
 const popupProfileEdit = new PopupWithForm(popupProfile, (inputs, popup) => {
-  const profileEdit = new UserInfo(objUserInfo);
-  profileEdit.setUserInfo();
+  profileInfo.setUserInfo();
   const profileUserInfo = profileInfo.getUserInfo();
   api.editProfileInfo(profileUserInfo)
   .catch(rej => {
@@ -111,44 +119,29 @@ const popupProfileEdit = new PopupWithForm(popupProfile, (inputs, popup) => {
 
 popupProfileEdit.setEventListeners();
 
-const popupCardForm = new PopupWithForm(popupAddCard, (inputs, popup) => {
-  api.createCard(inputs).then((res) => {
-    initialCard(res);
-    popupAdd.close();
-  }).catch(rej => {
-    console.log(rej)
-  }).finally(() => {
-    popup.renderLoading(false, 'Создать');
-  })
-}, formAddCard);
-
-popupCardForm.setEventListeners();
-
 formValidatorCard.enableValidation();
 formValidatorProfile.enableValidation();
 formAvatarValidator.enableValidation();
 
 profileBtnEditAva.addEventListener('click', () => {
-  popupEditAva.setEventListeners();
   popupEditAva.open();
-  formSubmitButton.setAttribute('disabled', 'disabled');
   formAvatarValidator.disableButton();
-})
+});
+popupEditAva.setEventListeners();
 
 buttonEditProfile.addEventListener('click', function () {
   const profileUserInfo = profileInfo.getUserInfo();
-  popupEditProfile.setEventListeners();
   popupEditProfile.open();
 
   inputName.value = profileUserInfo.name;
   inputText.value = profileUserInfo.info;
 });
+popupEditProfile.setEventListeners();
 
 profileAddBtn.addEventListener('click', function () {
-  popupAdd.setEventListeners();
   popupAdd.open();
-  formSubmitButton.setAttribute('disabled', 'disabled');
   formValidatorCard.disableButton();
   inputTitle.value = '';
   inputLink.value = '';
 });
+popupAdd.setEventListeners();
