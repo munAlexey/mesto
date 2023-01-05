@@ -20,9 +20,9 @@ export default class PopupWithForm extends Popup {
 
   renderLoading(isLoading, text) {
     if(isLoading) {
-      this._formSubmitButton .textContent = `${this._formSubmitButton .textContent}...`
+      this._formSubmitButton.textContent = `${this._formSubmitButton.textContent}...`
     } else {
-      this._formSubmitButton .textContent = text;
+      this._formSubmitButton.textContent = text;
     }
   }
 
