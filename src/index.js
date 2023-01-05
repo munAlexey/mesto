@@ -8,7 +8,7 @@ import '../pages/index.css';
 import { PopupConfirm } from './components/PopupConfirm.js';
 import { buttonEditProfile, formProfile, inputName, inputText,
   popupProfile, popupFullCards, formEditAva, profileBtnEditAva, popupEditAvatar,
-   cardsListSelector, objUserInfo, iconProfile, titleProfile, subtitleProfile, inputTitle, inputLink, profileAddBtn, 
+   cardsListSelector, objUserInfo, iconProfile, objAva, inputTitle, inputLink, profileAddBtn, 
   popupAddCard, configValidation, apiConfig, popupDeleteCard, formAddCard } from './utils/constants.js';
 import UserInfo from './components/UserInfo.js';
 import {API} from './components/API.js';
@@ -16,34 +16,39 @@ import UserAvatarInfo from './components/UserAvatarInfo.js';
 
 const api = new API(apiConfig);
 const profileInfo = new UserInfo(objUserInfo); 
+const avatarEdit = new UserAvatarInfo(objAva);
 
+let userInfo;
+
+const popupCardForm = new PopupWithForm(popupAddCard, (inputs, popup) => {
+  api.createCard(inputs).then((res) => {
+    defaultCardList.addItem(initialCard(res));
+    popupAdd.close();
+  }).catch(rej => {
+    console.log(rej)
+  }).finally(() => {
+    popup.renderLoading(false, 'Создать');
+  })
+}, formAddCard);
+
+const defaultCardList = new Section((item) => {
+  defaultCardList.addItem(initialCard(item));
+}, cardsListSelector);        
 
 Promise.all([api.getCardsList(), api.getProfileInfo()])
 .then(([cards, result]) => {
-  let userInfo = result._id;
-  const defaultCardList = new Section((item) => {
-    defaultCardList.addItem(initialCard(item, userInfo))
-  }, cardsListSelector);
-  defaultCardList.renderItems(cards);
-  iconProfile.src = result.avatar;
-  titleProfile.textContent = result.name;
-  subtitleProfile.textContent = result.about;
-
-  const popupCardForm = new PopupWithForm(popupAddCard, (inputs, popup) => {
-    api.createCard(inputs).then((res) => {
-      defaultCardList.addItem(initialCard(res, userInfo));
-      popupAdd.close();
-    }).catch(rej => {
-      console.log(rej)
-    }).finally(() => {
-      popup.renderLoading(false, 'Создать');
-    })
-  }, formAddCard);
-  popupCardForm.setEventListeners();
+  userInfo = result._id;
+  defaultCardList.renderItems(cards.reverse());
+  profileInfo.setUserInfo({
+    name: result.name,
+    info: result.about
+  })
+  avatarEdit.setAvatarInfo({avatar: result.avatar});
+  }).catch(rej => {
+    console.log(rej)
 });
+popupCardForm.setEventListeners();
 
-
-const popupEditProfile = new Popup(popupProfile);
 const popupEditAva = new Popup(popupEditAvatar);
 const popupAdd = new Popup(popupAddCard);
 const popupFullOpen = new PopupWithImage(popupFullCards);
@@ -60,17 +65,16 @@ const popupConfirmBtn = new PopupConfirm(popupDeleteCard, (card) => {
     console.log(rej)
   });
 });
+popupConfirmBtn.setEventListeners();
 
-const initialCard = function (item, userInfo) {
+const initialCard = function (item) {
   const card = new Card(item, '#item', (item) => {
-    popupFullOpen.setEventListeners();
     popupFullOpen.open(item);
   },
-    async (card) => {
+    (card) => {
       popupConfirmBtn.open(card);
-      popupConfirmBtn.setEventListeners();
     },
-    async (isLike, card) => {
+    (isLike, card) => {
       if(!isLike) {
         api.getCardLike(card._data._id)
         .then(res => {
@@ -93,27 +97,30 @@ const initialCard = function (item, userInfo) {
   );
   return card.generateCard();
 }
+popupFullOpen.setEventListeners();
 
 const popupAvatarEdit = new PopupWithForm(popupEditAvatar, (input, popup) => {
-  const avatarEdit = new UserAvatarInfo(input);
-  api.editProfileAvatar(avatarEdit._data)
+  api.editProfileAvatar(input)
+  .then(res => {
+    avatarEdit.setAvatarInfo({avatar: res.avatar});
+  })
   .catch(rej => {
     console.log(rej)
   })
   .finally(() => {
     popup.renderLoading(false, 'Сохранить')
   })
-  
-  iconProfile.src = input.link;
-  popupEditAva.setEventListeners();
 }, formEditAva);
+popupEditAva.setEventListeners();
 
 popupAvatarEdit.setEventListeners();
 
 const popupProfileEdit = new PopupWithForm(popupProfile, (inputs, popup) => {
-  profileInfo.setUserInfo();
-  const profileUserInfo = profileInfo.getUserInfo();
-  api.editProfileInfo(profileUserInfo)
+  profileInfo.setUserInfo({
+    name: inputs.name,
+    info: inputs.profession
+  })
+  api.editProfileInfo(inputs)
   .catch(rej => {
     console.log(rej)
   })
@@ -136,12 +143,11 @@ popupEditAva.setEventListeners();
 
 buttonEditProfile.addEventListener('click', function () {
   const profileUserInfo = profileInfo.getUserInfo();
-  popupEditProfile.open();
+  popupProfileEdit.open();
 
   inputName.value = profileUserInfo.name;
   inputText.value = profileUserInfo.info;
 });
-popupEditProfile.setEventListeners();
 
 profileAddBtn.addEventListener('click', function () {
   popupAdd.open();

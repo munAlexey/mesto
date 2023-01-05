@@ -13,8 +13,8 @@ export default class UserInfo {
     }
   }
 
-  setUserInfo() {   
-    titleProfile.textContent = this._userName.value;
-    subtitleProfile.textContent = this._userInfo.value;
+  setUserInfo(res) {   
+    titleProfile.textContent = res.name;
+    subtitleProfile.textContent = res.info;
   }
 }

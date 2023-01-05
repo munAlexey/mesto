@@ -5,7 +5,7 @@ export default class UserAvatarInfo {
     this._data = data;
   }
 
-  setAvatarInfo() {   
-    iconProfile.src = this._data.value
+  setAvatarInfo(result) {   
+    iconProfile.src = result.avatar;
   }
 }

@@ -1,11 +1,4 @@
 import { formSubmitButton  } from "../utils/constants";
-function renderLoading(isLoading, text) {
-  if(isLoading) {
-    formSubmitButton.textContent = `${formSubmitButton.textContent}...`
-  } else {
-    formSubmitButton.textContent = text;
-  }
-}
 
 export class API {
   constructor(config) {
@@ -71,7 +64,7 @@ export class API {
       'headers': this.headers,
       body: JSON.stringify({
         name: profileUserInfo.name,
-        about: profileUserInfo.info
+        about: profileUserInfo.profession
       })
     })
     if (response.ok) {
