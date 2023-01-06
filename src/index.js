@@ -1,14 +1,13 @@
 import Card from './components/Card.js';
 import FormValidator from './components/FormValidator.js'
 import Section from './components/Section.js';
-import Popup from './components/Popup.js';
 import PopupWithForm from './components/PopupWithForm.js';
 import PopupWithImage from './components/PopupWithImage.js';
 import '../pages/index.css';
 import { PopupConfirm } from './components/PopupConfirm.js';
 import { buttonEditProfile, formProfile, inputName, inputText,
   popupProfile, popupFullCards, formEditAva, profileBtnEditAva, popupEditAvatar,
-   cardsListSelector, objUserInfo, iconProfile, objAva, inputTitle, inputLink, profileAddBtn, 
+  cardsListSelector, objUserInfo, iconProfile, objAva, inputTitle, inputLink, profileAddBtn, 
   popupAddCard, configValidation, apiConfig, popupDeleteCard, formAddCard } from './utils/constants.js';
 import UserInfo from './components/UserInfo.js';
 import {API} from './components/API.js';
@@ -23,17 +22,17 @@ let userInfo;
 const popupCardForm = new PopupWithForm(popupAddCard, (inputs, popup) => {
   api.createCard(inputs).then((res) => {
     defaultCardList.addItem(initialCard(res));
-    popupAdd.close();
   }).catch(rej => {
     console.log(rej)
   }).finally(() => {
     popup.renderLoading(false, 'Создать');
-  })
+  });
+  popupCardForm.close();
 }, formAddCard);
 
 const defaultCardList = new Section((item) => {
   defaultCardList.addItem(initialCard(item));
-}, cardsListSelector);        
+}, cardsListSelector);
 
 Promise.all([api.getCardsList(), api.getProfileInfo()])
 .then(([cards, result]) => {
@@ -49,8 +48,6 @@ Promise.all([api.getCardsList(), api.getProfileInfo()])
 });
 popupCardForm.setEventListeners();
 
-const popupEditAva = new Popup(popupEditAvatar);
-const popupAdd = new Popup(popupAddCard);
 const popupFullOpen = new PopupWithImage(popupFullCards);
 const formAvatarValidator = new FormValidator(configValidation, formEditAva);
 const formValidatorCard = new FormValidator(configValidation, formAddCard);
@@ -109,10 +106,9 @@ const popupAvatarEdit = new PopupWithForm(popupEditAvatar, (input, popup) => {
   })
   .finally(() => {
     popup.renderLoading(false, 'Сохранить')
-  })
+  });
+  popupAvatarEdit.close();
 }, formEditAva);
-popupEditAva.setEventListeners();
-
 popupAvatarEdit.setEventListeners();
 
 const popupProfileEdit = new PopupWithForm(popupProfile, (inputs, popup) => {
@@ -127,6 +123,7 @@ const popupProfileEdit = new PopupWithForm(popupProfile, (inputs, popup) => {
   .finally(() => {
     popup.renderLoading(false, 'Сохранить')
   });
+  popupProfileEdit.close();
 }, formProfile);
 
 popupProfileEdit.setEventListeners();
@@ -136,10 +133,9 @@ formValidatorProfile.enableValidation();
 formAvatarValidator.enableValidation();
 
 profileBtnEditAva.addEventListener('click', () => {
-  popupEditAva.open();
+  popupAvatarEdit.open();
   formAvatarValidator.disableButton();
 });
-popupEditAva.setEventListeners();
 
 buttonEditProfile.addEventListener('click', function () {
   const profileUserInfo = profileInfo.getUserInfo();
@@ -150,9 +146,8 @@ buttonEditProfile.addEventListener('click', function () {
 });
 
 profileAddBtn.addEventListener('click', function () {
-  popupAdd.open();
+  popupCardForm.open();
   formValidatorCard.disableButton();
   inputTitle.value = '';
   inputLink.value = '';
 });
-popupAdd.setEventListeners();

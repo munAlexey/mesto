@@ -22,7 +22,6 @@ export default class FormValidator {
   _toggleInputErrorState(input) {
     this.formError = this._form.querySelector(`.${input.id}-error`);
     if (!input.validity.valid) {
-      console.log(input.validationMessage)
       this._showInputError(input, input.validationMessage);
     } else {
       this._hideInputError(input);
