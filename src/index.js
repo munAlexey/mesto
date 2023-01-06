@@ -22,13 +22,17 @@ let userInfo;
 const popupCardForm = new PopupWithForm(popupAddCard, (inputs, popup) => {
   api.createCard(inputs).then((res) => {
     defaultCardList.addItem(initialCard(res));
-  }).catch(rej => {
+  })
+  .then(() => {
+    popupCardForm.close();
+  })
+  .catch(rej => {
     console.log(rej)
   }).finally(() => {
     popup.renderLoading(false, 'Создать');
   });
-  popupCardForm.close();
 }, formAddCard);
+
 
 const defaultCardList = new Section((item) => {
   defaultCardList.addItem(initialCard(item));
@@ -56,6 +60,8 @@ const popupConfirmBtn = new PopupConfirm(popupDeleteCard, (card) => {
   api.deleteCard(card._data._id)
   .then(() => {
     card.handleDeleteBtn();
+  })
+  .then(() => {
     popupConfirmBtn.close();
   })
   .catch(rej => {
@@ -101,13 +107,15 @@ const popupAvatarEdit = new PopupWithForm(popupEditAvatar, (input, popup) => {
   .then(res => {
     avatarEdit.setAvatarInfo({avatar: res.avatar});
   })
+  .then(() => {
+    popupAvatarEdit.close();
+  })
   .catch(rej => {
     console.log(rej)
   })
   .finally(() => {
     popup.renderLoading(false, 'Сохранить')
   });
-  popupAvatarEdit.close();
 }, formEditAva);
 popupAvatarEdit.setEventListeners();
 
@@ -117,13 +125,15 @@ const popupProfileEdit = new PopupWithForm(popupProfile, (inputs, popup) => {
     info: inputs.profession
   })
   api.editProfileInfo(inputs)
+  .then(() => {
+    popupProfileEdit.close();
+  })
   .catch(rej => {
     console.log(rej)
   })
   .finally(() => {
     popup.renderLoading(false, 'Сохранить')
   });
-  popupProfileEdit.close();
 }, formProfile);
 
 popupProfileEdit.setEventListeners();
